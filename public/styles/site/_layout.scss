@@ -9,8 +9,35 @@
 	color: #777777;
 }
 
-.gallery-image img{
-    display: block;
-    max-width: 100%;
-    height: auto;
+.gallery-image img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.content {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+body {
+	font-family: 100% $raleway;
+}
+
+.search-bar {
+	width: 60%;
+	margin: 0 auto;
+	padding-bottom: 30px;
+	input {
+		font-family: $raleway;
+	}
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-family: $raleway;
+		padding-bottom: 30px;
+		color: $darker-gray;
+	}
 }

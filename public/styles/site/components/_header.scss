@@ -1,0 +1,28 @@
+ nav {
+ 	font-family: $raleway;
+ 	color: white;
+ }
+ 
+ .header {
+ 	border-radius: 0;
+ 	background-color: $bright-blue;
+ 	border-color: $bright-blue;
+ 	height: 40px;
+ }
+ 
+ .header .navbar-nav>li>a {
+ 	color: white;
+ }
+ 
+ .header .navbar-header>a {
+ 	color: white;
+ }
+ 
+ .header .container {
+ 	width: 100%;
+ }
+ 
+ input.form-control {
+ 	width: 100% !important;
+ 	box-sizing: border-box;
+ }

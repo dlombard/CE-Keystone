@@ -3,8 +3,15 @@
 
 // Bootstrap can be removed entirely by deleting this line.
 
-@import "bootstrap/bootstrap";
+//@import "bootstrap/bootstrap";
 
+
+// Fonts
+
+@import "site/fonts";
+
+// Colors
+@import "site/colors";
 // The easiest way to customise Bootstrap variables while
 // being able to easily override the source files with new
 // versions is to override the ones you want in another file.
@@ -15,8 +22,13 @@
 @import "site/variables";
 
 
+// Components and sections
+@import "site/components/header";
+@import "site/components/searchbar";
+
 // Site Styles
 // ===========
 
 // Add your own site style includes here
 @import "site/layout";
+
