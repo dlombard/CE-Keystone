@@ -1,7 +1,7 @@
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').config();
-
+var logger = require('winston');
 // Require keystone
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
@@ -20,9 +20,13 @@ var requestIp = require('request-ip')
 var history = require('connect-history-api-fallback');
 var app = express();
 
+logger.log('info', 'STARTING APP')
 keystone.mongoose = Promise.promisifyAll(mongoose);
-
-app.use(express.static('public'));
+app.get('/js/bundle.js', (req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile('bundle.js', {root: `${__dirname}/`});
+});
+//app.use(express.static('public'));
 app.use(express.static('images'));
 app.use(compression());
 app.use(cors());
@@ -30,14 +34,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(requestIp.mw())
-
+app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
-	'view engine': 'hbs',
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -47,14 +50,14 @@ keystone.init({
 });
 
 //keystone.app = app
-keystone.import('models');
+keystone.import('./lib/server/models');
 keystone.set('locals', {
 	_: require('lodash'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable,
 });
-keystone.set('routes', require('./routes/react'));
+keystone.set('routes', require('./lib/server/routes/react'));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],

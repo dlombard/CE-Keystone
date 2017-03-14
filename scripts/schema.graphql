@@ -15,6 +15,21 @@ interface Node {
   id: ID!
 }
 
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
 type Query {
   # Fetches an object given its ID
   node(
@@ -47,6 +62,24 @@ type Song implements Node {
   songId: String
 }
 
+# A connection to a list of items.
+type SongConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [SongEdge]
+}
+
+# An edge in a connection.
+type SongEdge {
+  # The item at the end of the edge
+  node: Song
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 type Viewer {
-  songs(book: String): [Song]
+  songs(after: String, first: Int, before: String, last: Int, book: String): SongConnection
 }

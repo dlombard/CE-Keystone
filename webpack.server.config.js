@@ -4,29 +4,32 @@ var path = require('path')
 const outputPath = path.resolve(__dirname)
 console.log(`OUTPUT PATH: ${outputPath}`)
 module.exports = {
-    entry: path.resolve(__dirname, 'keystone.js'),
+  entry: path.resolve(__dirname, 'keystone.js'),
 
-    output: { path: outputPath, filename: 'server.bundle.js' },
+  output: { path: outputPath, filename: 'server.bundle.js' },
 
-    target: 'node',
-    module: {
-        rules: [
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-        ]
-    },
-    //  keep node_module paths out of the bundle
-    externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).concat(['react-dom/server', 'react/addons']).
-        reduce(
-        (ext, mod) => {
-            ext[mod] = `commonjs ${mod}`
+  target: 'node',
+  module: {
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+    ]
+  },
+  //  keep node_module paths out of the bundle
+  externals: [
+    fs.readdirSync(path.resolve(__dirname, 'node_modules')).concat(['react-dom/server', 'react/addons']).
+      reduce(
+      (ext, mod) => {
+        ext[mod] = `commonjs ${mod}`
 
-            return ext
-        }, {}),
+        return ext
+      }, {}),
+    { winston: 'require("winston")' }
+  ],
 
-    node: {
-        __filename: false,
-        __dirname: false
-    },
+  node: {
+    __filename: false,
+    __dirname: false
+  },
 
 
 }

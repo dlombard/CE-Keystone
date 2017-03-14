@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 49);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -82,86 +82,47 @@ module.exports = require("keystone");
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash");
+module.exports = require("graphql");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql");
+module.exports = require("lodash");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-bootstrap");
+module.exports = require("graphql-relay");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-relay");
+module.exports = require("react-bootstrap");
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-relay");
+module.exports = require("react-relay");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router");
+module.exports = require("winston");
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("body-parser");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(7);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _react2.default.createClass({
-  displayName: 'NavLink',
-  render: function render() {
-    return _react2.default.createElement(_reactRouter.Link, _extends({}, this.props, { activeClassName: 'active' }));
-  }
-});
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _ = __webpack_require__(2);
+var _ = __webpack_require__(3);
+var logger = __webpack_require__(7);
 
 var buildFind = function buildFind(args, query) {
     if (args.id) {
@@ -170,15 +131,15 @@ var buildFind = function buildFind(args, query) {
     }
     query.where = args;
     var data = {};
-
-    return query.model.findAsync(query.where).then(function (results) {
+    logger.info('SORT IS: ' + JSON.stringify(query.sort));
+    return query.model.find(query.where).sort(query.sort).execAsync().then(function (results) {
         return results;
     }).catch(function (err) {
         console.log(err);
     });
 };
 
-var queryBuilder = function queryBuilder(op, model, args, doc) {
+var queryBuilder = function queryBuilder(op, model, args, opts, doc) {
     var query = {
         op: op,
         model: model,
@@ -186,6 +147,7 @@ var queryBuilder = function queryBuilder(op, model, args, doc) {
         projection: {},
         skip: {},
         limit: {},
+        sort: opts.sort,
         doc: doc
     };
 
@@ -213,13 +175,59 @@ var queryBuilder = function queryBuilder(op, model, args, doc) {
 module.exports = queryBuilder;
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("body-parser");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(3),
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(9);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createClass({
+  displayName: 'NavLink',
+  render: function render() {
+    return _react2.default.createElement(_reactRouter.Link, _extends({}, this.props, { activeClassName: 'active' }));
+  }
+});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(2),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -231,7 +239,7 @@ var _require = __webpack_require__(3),
     GraphQLNonNull = _require.GraphQLNonNull,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(6),
+var _require2 = __webpack_require__(4),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -243,7 +251,7 @@ var _require2 = __webpack_require__(6),
     toGlobalId = _require2.toGlobalId;
 
 var keystone = __webpack_require__(1);
-var db = __webpack_require__(11);
+var db = __webpack_require__(8);
 
 var _nodeDefinitions = nodeDefinitions(function (globalId) {
     var _fromGlobalId = fromGlobalId(globalId),
@@ -269,7 +277,102 @@ var _nodeDefinitions = nodeDefinitions(function (globalId) {
 module.exports = { nodeInterface: nodeInterface, nodeField: nodeField };
 
 /***/ }),
-/* 13 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(2),
+    buildSchema = _require.buildSchema,
+    GraphQLInt = _require.GraphQLInt,
+    GraphQLList = _require.GraphQLList,
+    GraphQLObjectType = _require.GraphQLObjectType,
+    GraphQLSchema = _require.GraphQLSchema,
+    GraphQLString = _require.GraphQLString,
+    GraphQLID = _require.GraphQLID,
+    GraphQLBoolean = _require.GraphQLBoolean,
+    GraphQLNonNull = _require.GraphQLNonNull,
+    GraphQLInputObjectType = _require.GraphQLInputObjectType,
+    Graphql = _require.Graphql;
+
+var _require2 = __webpack_require__(4),
+    connectionArgs = _require2.connectionArgs,
+    connectionDefinitions = _require2.connectionDefinitions,
+    connectionFromArray = _require2.connectionFromArray,
+    cursorForObjectInConnection = _require2.cursorForObjectInConnection,
+    fromGlobalId = _require2.fromGlobalId,
+    globalIdField = _require2.globalIdField,
+    mutationWithClientMutationId = _require2.mutationWithClientMutationId,
+    nodeDefinitions = _require2.nodeDefinitions,
+    toGlobalId = _require2.toGlobalId;
+
+var _require3 = __webpack_require__(13),
+    nodeInterface = _require3.nodeInterface,
+    nodeField = _require3.nodeField;
+
+var SongType = new GraphQLObjectType({
+    name: 'Song',
+    fields: function fields() {
+        return {
+            id: globalIdField('Song'),
+            title: { type: GraphQLString },
+            num: { type: GraphQLInt },
+            book: {
+                type: new GraphQLObjectType({
+                    name: 'Book',
+                    fields: function fields() {
+                        return {
+                            name: { type: GraphQLString },
+                            abbrv: { type: GraphQLString },
+                            languages: { type: GraphQLString }
+                        };
+                    }
+                })
+
+            },
+            lyrics: { type: GraphQLString },
+            lyrics_Markdown: {
+                type: new GraphQLObjectType({
+                    name: 'Markdown',
+                    fields: function fields() {
+                        return {
+                            md: { type: GraphQLString },
+                            html: { type: GraphQLString }
+                        };
+                    }
+                })
+            },
+            lyrics_Html: { type: GraphQLString },
+            tags: { type: GraphQLString },
+            videos: { type: GraphQLString },
+            references: {
+                type: new GraphQLObjectType({
+                    name: 'References',
+                    fields: function fields() {
+                        return {
+                            author: { type: GraphQLString },
+                            book: { type: GraphQLString },
+                            year: { type: GraphQLString }
+                        };
+                    }
+
+                })
+            },
+            partitions: { type: GraphQLString },
+            language: { type: GraphQLString },
+            songId: { type: GraphQLString }
+        };
+    },
+    interfaces: function interfaces() {
+        return [nodeInterface];
+    }
+});
+
+module.exports = SongType;
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -281,41 +384,41 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(47);
+var _server = __webpack_require__(48);
 
 var _server2 = _interopRequireDefault(_server);
 
-var _reactRouter = __webpack_require__(7);
+var _reactRouter = __webpack_require__(9);
 
-var _routes = __webpack_require__(31);
+var _routes = __webpack_require__(33);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _package = __webpack_require__(41);
-
-var _package2 = _interopRequireDefault(_package);
-
-var _graphqlHTTP = __webpack_require__(37);
+var _graphqlHTTP = __webpack_require__(39);
 
 var _graphqlHTTP2 = _interopRequireDefault(_graphqlHTTP);
 
-var _bodyParser = __webpack_require__(8);
+var _bodyParser = __webpack_require__(10);
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _reactRelay = __webpack_require__(5);
+var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _isomorphicRelayRouter = __webpack_require__(44);
+var _isomorphicRelayRouter = __webpack_require__(45);
 
 var _isomorphicRelayRouter2 = _interopRequireDefault(_isomorphicRelayRouter);
 
-var _path = __webpack_require__(9);
+var _path = __webpack_require__(11);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _songs = __webpack_require__(40);
+var _winston = __webpack_require__(7);
+
+var _winston2 = _interopRequireDefault(_winston);
+
+var _songs = __webpack_require__(42);
 
 var _songs2 = _interopRequireDefault(_songs);
 
@@ -330,25 +433,9 @@ var networkLayer = new _reactRelay2.default.DefaultNetworkLayer(GRAPHQL_URL);
 exports = module.exports = function (app) {
     app.use('/graphql', _bodyParser2.default.json(), (0, _graphqlHTTP2.default)());
     // Views
-    /*app.use('/', function (req, res) {
-    	const ip = req.clientIp;
-    	getGeo(res)
-    	res.render('index');
-    });*/
+    _winston2.default.log('info', __dirname);
     app.get('/api/songs/id/:id', _songs2.default.get);
     app.get('/api/songs/:book', _songs2.default.list);
-
-    // Render Initial HTML
-    var appHtml = function appHtml(html, initialState) {
-        var head = Helmet.rewind();
-        return '<!doctype html>\n        <html>\n          <head>\n            <html>\n            <meta charset=utf-8/>\n            <title>My First React Router App</title>\n            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"\ncrossorigin="anonymous">\n            <link href="/styles/site.css" rel="stylesheet">\n          </head>\n              <div id="app"></div>\n            <script src=\'/js/bundle.js\'></script>\n          </body>\n      </html>';
-    };
-
-    var renderError = function renderError(err) {
-        var softTab = '&#32;&#32;&#32;&#32;';
-        var errTrace = process.env.NODE_ENV !== 'production' ? ':<br><br><pre style="color:red">' + softTab + err.stack.replace(/\n/g, '<br>' + softTab) + '</pre>' : '';
-        return renderFullPage('Server Error' + errTrace, {});
-    };
 
     // match the backend routes with the client routes
     app.use(function (req, res, next) {
@@ -356,6 +443,7 @@ exports = module.exports = function (app) {
             next();
             return;
         }
+
         (0, _reactRouter.match)({ routes: _routes2.default, location: req.url }, function (err, redirect, props) {
             if (err) {
                 res.status(500).send(err.message);
@@ -375,99 +463,94 @@ exports = module.exports = function (app) {
                 props = _ref.props;
 
             var reactOutput = _server2.default.renderToString(_isomorphicRelayRouter2.default.render(props));
-            console.log(reactOutput);
-            res.render('index.hbs', {
-                preloadedData: JSON.stringify(data),
+            res.render('index.ejs', {
+                preloadedData: data,
                 reactOutput: reactOutput
             });
         }
     });
-
-    function renderPage(appHtml) {
-        return '\n    <!doctype html public="storage">\n    <html>\n    <meta charset=utf-8/>\n    <title>My First React Router App</title>\n    <link rel=stylesheet href=/index.css>\n    <div id=app>' + appHtml + '</div>\n    <script src="/bundle.js"></script>\n   ';
-    }
 };
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = require("bluebird");
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = require("compression");
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = require("connect-history-api-fallback");
+module.exports = require("bluebird");
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = require("connect-mongo");
+module.exports = require("compression");
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = require("cookie-parser");
+module.exports = require("connect-history-api-fallback");
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = require("cors");
+module.exports = require("connect-mongo");
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = require("dotenv");
+module.exports = require("cookie-parser");
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("cors");
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-handlebars");
+module.exports = require("dotenv");
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-session");
+module.exports = require("express");
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongoose");
+module.exports = require("express-handlebars");
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = require("request-ip");
+module.exports = require("express-session");
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = require("serve-favicon");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+module.exports = require("request-ip");
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = require("serve-favicon");
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -485,11 +568,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = __webpack_require__(45);
+var _reactAddonsCssTransitionGroup = __webpack_require__(46);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _Header = __webpack_require__(28);
+var _Header = __webpack_require__(30);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -535,7 +618,7 @@ var Base = function (_React$Component) {
 exports.default = Base;
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -553,7 +636,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(4);
+var _reactBootstrap = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -619,7 +702,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -637,7 +720,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(4);
+var _reactBootstrap = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -674,7 +757,7 @@ var SearchBar = function (_React$Component) {
 exports.default = SearchBar;
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -685,7 +768,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.queries = undefined;
 
-var _reactRelay = __webpack_require__(5);
+var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
@@ -704,7 +787,7 @@ var queries = exports.queries = { viewer: function viewer() {
   } };
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -718,41 +801,41 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(46);
+var _reactDom = __webpack_require__(47);
 
-var _reactRouter = __webpack_require__(7);
+var _reactRouter = __webpack_require__(9);
 
-var _App = __webpack_require__(33);
+var _App = __webpack_require__(35);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Home = __webpack_require__(34);
+var _Home = __webpack_require__(36);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _SongsList = __webpack_require__(36);
+var _SongsList = __webpack_require__(38);
 
 var _SongsList2 = _interopRequireDefault(_SongsList);
 
-var _Song = __webpack_require__(35);
+var _Song = __webpack_require__(37);
 
 var _Song2 = _interopRequireDefault(_Song);
 
-var _About = __webpack_require__(32);
+var _About = __webpack_require__(34);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Base = __webpack_require__(27);
+var _Base = __webpack_require__(29);
 
 var _Base2 = _interopRequireDefault(_Base);
 
-var _Songs = __webpack_require__(30);
+var _Songs = __webpack_require__(32);
 
-var _reactRelay = __webpack_require__(5);
+var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _reactRouterRelay = __webpack_require__(48);
+var _reactRouterRelay = __webpack_require__(49);
 
 var _reactRouterRelay2 = _interopRequireDefault(_reactRouterRelay);
 
@@ -782,7 +865,7 @@ module.exports = _jsx(_reactRouter.Router, {
 }))));
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -830,7 +913,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -846,7 +929,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NavLink = __webpack_require__(10);
+var _NavLink = __webpack_require__(12);
 
 var _NavLink2 = _interopRequireDefault(_NavLink);
 
@@ -869,7 +952,7 @@ exports.default = _react2.default.createClass({
 });
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -887,13 +970,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(4);
+var _reactBootstrap = __webpack_require__(5);
 
-var _SearchBar = __webpack_require__(29);
+var _SearchBar = __webpack_require__(31);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-var _NavLink = __webpack_require__(10);
+var _NavLink = __webpack_require__(12);
 
 var _NavLink2 = _interopRequireDefault(_NavLink);
 
@@ -979,7 +1062,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -997,7 +1080,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(4);
+var _reactBootstrap = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1043,7 +1126,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1061,11 +1144,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRelay = __webpack_require__(5);
+var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _lodash = __webpack_require__(2);
+var _lodash = __webpack_require__(3);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -1091,10 +1174,10 @@ var SongsList = function (_React$Component) {
         value: function render() {
             var viewer = this.props.viewer;
 
-
-            return _jsx('div', {}, void 0, viewer.songs.map(function (song) {
-                return _jsx('div', {}, song.id, _jsx('span', {}, void 0, song.num + ' ' + song.title), _jsx('br', {}), _jsx('span', {
-                    dangerouslySetInnerHTML: { __html: song.lyrics_Markdown.html }
+            return _jsx('div', {}, void 0, viewer.songs.edges.map(function (_ref) {
+                var node = _ref.node;
+                return _jsx('div', {}, node.id, _jsx('span', {}, void 0, node.num + ' ' + node.title), _jsx('br', {}), _jsx('span', {
+                    dangerouslySetInnerHTML: { __html: node.lyrics_Markdown.html }
                 }), _jsx('br', {}), _jsx('br', {}));
             }));
         }
@@ -1106,6 +1189,7 @@ var SongsList = function (_React$Component) {
 exports.default = _reactRelay2.default.createContainer(SongsList, {
     initialVariables: { book: "MJ" },
     prepareVariables: function prepareVariables(prevVariables) {
+        console.log(prevVariables);
         return { book: _lodash2.default.upperCase(prevVariables.book) };
     },
     fragments: {
@@ -1122,52 +1206,114 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                                 kind: 'CallVariable',
                                 callVariableName: 'book'
                             }
+                        }, {
+                            kind: 'Call',
+                            metadata: {
+                                type: 'Int'
+                            },
+                            name: 'first',
+                            value: {
+                                kind: 'CallValue',
+                                callValue: 10
+                            }
                         }],
                         children: [{
-                            fieldName: 'id',
-                            kind: 'Field',
-                            metadata: {
-                                isRequisite: true
-                            },
-                            type: 'ID'
-                        }, {
-                            fieldName: 'title',
-                            kind: 'Field',
-                            metadata: {},
-                            type: 'String'
-                        }, {
-                            fieldName: 'num',
-                            kind: 'Field',
-                            metadata: {},
-                            type: 'Int'
-                        }, {
                             children: [{
-                                fieldName: 'md',
+                                children: [{
+                                    fieldName: 'id',
+                                    kind: 'Field',
+                                    metadata: {
+                                        isRequisite: true
+                                    },
+                                    type: 'ID'
+                                }, {
+                                    fieldName: 'title',
+                                    kind: 'Field',
+                                    metadata: {},
+                                    type: 'String'
+                                }, {
+                                    fieldName: 'num',
+                                    kind: 'Field',
+                                    metadata: {},
+                                    type: 'Int'
+                                }, {
+                                    children: [{
+                                        fieldName: 'md',
+                                        kind: 'Field',
+                                        metadata: {},
+                                        type: 'String'
+                                    }, {
+                                        fieldName: 'html',
+                                        kind: 'Field',
+                                        metadata: {},
+                                        type: 'String'
+                                    }],
+                                    fieldName: 'lyrics_Markdown',
+                                    kind: 'Field',
+                                    metadata: {
+                                        canHaveSubselections: true
+                                    },
+                                    type: 'Markdown'
+                                }],
+                                fieldName: 'node',
                                 kind: 'Field',
-                                metadata: {},
-                                type: 'String'
+                                metadata: {
+                                    canHaveSubselections: true,
+                                    inferredRootCallName: 'node',
+                                    inferredPrimaryKey: 'id',
+                                    isRequisite: true
+                                },
+                                type: 'Song'
                             }, {
-                                fieldName: 'html',
+                                fieldName: 'cursor',
                                 kind: 'Field',
-                                metadata: {},
+                                metadata: {
+                                    isGenerated: true,
+                                    isRequisite: true
+                                },
                                 type: 'String'
                             }],
-                            fieldName: 'lyrics_Markdown',
+                            fieldName: 'edges',
                             kind: 'Field',
                             metadata: {
-                                canHaveSubselections: true
+                                canHaveSubselections: true,
+                                isPlural: true
                             },
-                            type: 'Markdown'
+                            type: 'SongEdge'
+                        }, {
+                            children: [{
+                                fieldName: 'hasNextPage',
+                                kind: 'Field',
+                                metadata: {
+                                    isGenerated: true,
+                                    isRequisite: true
+                                },
+                                type: 'Boolean'
+                            }, {
+                                fieldName: 'hasPreviousPage',
+                                kind: 'Field',
+                                metadata: {
+                                    isGenerated: true,
+                                    isRequisite: true
+                                },
+                                type: 'Boolean'
+                            }],
+                            fieldName: 'pageInfo',
+                            kind: 'Field',
+                            metadata: {
+                                canHaveSubselections: true,
+                                isGenerated: true,
+                                isRequisite: true
+                            },
+                            type: 'PageInfo'
                         }],
                         fieldName: 'songs',
                         kind: 'Field',
                         metadata: {
                             canHaveSubselections: true,
-                            inferredRootCallName: 'node',
-                            inferredPrimaryKey: 'id',
-                            isPlural: true
+                            isConnection: true
                         },
-                        type: 'Song'
+                        type: 'SongConnection'
                     }],
                     id: _reactRelay2.default.QL.__id(),
                     kind: 'Fragment',
@@ -1180,17 +1326,28 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
     }
 });
 
+/*{viewer.songs.map((song) =>
+    <div key={song.id}>
+        <span>{`${song.num} ${song.title}`}</span>
+        <br />
+        <span dangerouslySetInnerHTML={{ __html: song.lyrics_Markdown.html }}></span>
+        <br />
+        <br />
+    </div>
+)
+}*/
+
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var graphqlHTTP = __webpack_require__(43);
-var QueryType = __webpack_require__(38);
+var graphqlHTTP = __webpack_require__(44);
+var QueryType = __webpack_require__(40);
 
-var _require = __webpack_require__(3),
+var _require = __webpack_require__(2),
     GraphQLSchema = _require.GraphQLSchema;
 
 module.exports = function initGraphQL() {
@@ -1205,13 +1362,13 @@ module.exports = function initGraphQL() {
 };
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(3),
+var _require = __webpack_require__(2),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -1224,7 +1381,7 @@ var _require = __webpack_require__(3),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(6),
+var _require2 = __webpack_require__(4),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -1236,33 +1393,27 @@ var _require2 = __webpack_require__(6),
     toGlobalId = _require2.toGlobalId;
 
 var keystone = __webpack_require__(1);
-var SongType = __webpack_require__(39);
+var SongType = __webpack_require__(14);
 
-var _require3 = __webpack_require__(12),
+var _require3 = __webpack_require__(13),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
-var db = __webpack_require__(11);
-
-var Viewer = new GraphQLObjectType({
+var db = __webpack_require__(8);
+var Viewer = __webpack_require__(41);
+/*var Viewer = new GraphQLObjectType({
     name: 'Viewer',
-    fields: function fields() {
-        return {
-            songs: {
-                type: new GraphQLList(SongType),
-                args: {
-                    book: { type: GraphQLString }
-                },
-                resolve: function resolve(root, args) {
-                    return db('FIND', keystone.list('Song').model, { 'book.abbrv': args.book }, null).then(function (collection) {
-                        return collection;
-                    });
-                }
-            }
+    fields: () => ({
+        songs: {
+            type: new GraphQLList(SongType),
+            args: {
+                book: { type: GraphQLString }
+            },
+            resolve: (root, args) => db('FIND', keystone.list('Song').model, { 'book.abbrv': args.book }, null).then((collection) => { return collection; }),
+        },
 
-        };
-    }
-});
+    }),
+})*/
 
 var QueryType = new GraphQLObjectType({
     name: 'Query',
@@ -1282,13 +1433,15 @@ var QueryType = new GraphQLObjectType({
 module.exports = QueryType;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(3),
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _require = __webpack_require__(2),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -1301,10 +1454,11 @@ var _require = __webpack_require__(3),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(6),
+var _require2 = __webpack_require__(4),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
+    connectionFromPromisedArray = _require2.connectionFromPromisedArray,
     cursorForObjectInConnection = _require2.cursorForObjectInConnection,
     fromGlobalId = _require2.fromGlobalId,
     globalIdField = _require2.globalIdField,
@@ -1312,85 +1466,52 @@ var _require2 = __webpack_require__(6),
     nodeDefinitions = _require2.nodeDefinitions,
     toGlobalId = _require2.toGlobalId;
 
-var _require3 = __webpack_require__(12),
-    nodeInterface = _require3.nodeInterface,
-    nodeField = _require3.nodeField;
+var keystone = __webpack_require__(1);
+var SongType = __webpack_require__(14);
+var db = __webpack_require__(8);
 
-var SongType = new GraphQLObjectType({
-    name: 'Song',
+var Viewer = new GraphQLObjectType({
+    name: 'Viewer',
     fields: function fields() {
         return {
-            id: globalIdField('Song'),
-            title: { type: GraphQLString },
-            num: { type: GraphQLInt },
-            book: {
-                type: new GraphQLObjectType({
-                    name: 'Book',
-                    fields: function fields() {
-                        return {
-                            name: { type: GraphQLString },
-                            abbrv: { type: GraphQLString },
-                            languages: { type: GraphQLString }
-                        };
-                    }
-                })
+            songs: {
+                type: songConnection,
+                args: _extends({}, connectionArgs, {
+                    book: { type: GraphQLString }
+                }),
+                resolve: function resolve(viewer, args) {
+                    return connectionFromPromisedArray(db('FIND', keystone.list('Song').model, { 'book.abbrv': args.book }, { sort: { num: 1 } }, null).then(function (collection) {
+                        return collection;
+                    }), args);
+                }
 
-            },
-            lyrics: { type: GraphQLString },
-            lyrics_Markdown: {
-                type: new GraphQLObjectType({
-                    name: 'Markdown',
-                    fields: function fields() {
-                        return {
-                            md: { type: GraphQLString },
-                            html: { type: GraphQLString }
-                        };
-                    }
-                })
-            },
-            lyrics_Html: { type: GraphQLString },
-            tags: { type: GraphQLString },
-            videos: { type: GraphQLString },
-            references: {
-                type: new GraphQLObjectType({
-                    name: 'References',
-                    fields: function fields() {
-                        return {
-                            author: { type: GraphQLString },
-                            book: { type: GraphQLString },
-                            year: { type: GraphQLString }
-                        };
-                    }
+            }
 
-                })
-            },
-            partitions: { type: GraphQLString },
-            language: { type: GraphQLString },
-            songId: { type: GraphQLString }
         };
-    },
-    interfaces: function interfaces() {
-        return [nodeInterface];
     }
 });
 
-var _connectionDefinition = connectionDefinitions({ nodeType: SongType }),
-    songConnection = _connectionDefinition.connectionType;
+var _connectionDefinition = connectionDefinitions({
+    name: 'Song',
+    nodeType: SongType
+}),
+    songConnection = _connectionDefinition.connectionType,
+    SongEdge = _connectionDefinition.edgeType;
 
-module.exports = SongType;
+module.exports = Viewer;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var async = __webpack_require__(42),
+var async = __webpack_require__(43),
     keystone = __webpack_require__(1);
 
 var Song = keystone.list('Song');
-var _ = __webpack_require__(2);
+var _ = __webpack_require__(3);
 /**
  * List Songs
  */
@@ -1423,124 +1544,49 @@ exports.get = function (req, res) {
 };
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	"name": "cesperance-backend",
-	"version": "0.0.0",
-	"private": true,
-	"dependencies": {
-		"async": "2.1.4",
-		"babel-relay-plugin": "^0.11.0",
-		"bluebird": "^3.5.0",
-		"body-parser": "^1.17.1",
-		"cloudinary": "1.7.0",
-		"compression": "^1.6.2",
-		"connect-history-api-fallback": "^1.3.0",
-		"connect-mongo": "^1.3.2",
-		"cookie-parser": "^1.4.3",
-		"cors": "^2.8.1",
-		"dotenv": "4.0.0",
-		"express": "^4.15.2",
-		"express-graphql": "^0.6.3",
-		"express-handlebars": "3.0.0",
-		"express-session": "^1.15.1",
-		"geolocator": "^2.1.1",
-		"graphql": "^0.9.1",
-		"graphql-relay": "^0.5.1",
-		"handlebars": "4.0.6",
-		"hbs": "^4.0.1",
-		"isomorphic-relay": "^0.7.4",
-		"isomorphic-relay-router": "^0.8.6",
-		"keystone": "^4.0.0-beta.5",
-		"lodash": "^4.13.1",
-		"markdown": "^0.5.0",
-		"moment": "2.17.1",
-		"mongoose": "^4.8.6",
-		"node-fetch": "^1.6.3",
-		"node-sass": "4.5.0",
-		"node-sass-middleware": "0.11.0",
-		"react": "^15.4.2",
-		"react-bootstrap": "^0.30.8",
-		"react-dom": "^15.4.2",
-		"react-icons": "^2.2.3",
-		"react-relay": "^0.10.0",
-		"react-router": "^3.0.2",
-		"react-router-relay": "^0.13.5",
-		"request-ip": "^2.0.1",
-		"serve-favicon": "^2.4.1",
-		"validator": "^7.0.0"
-	},
-	"devDependencies": {
-		"babel-core": "^6.23.1",
-		"babel-loader": "^6.4.0",
-		"babel-plugin-transform-react-constant-elements": "^6.23.0",
-		"babel-plugin-transform-react-inline-elements": "^6.22.0",
-		"babel-preset-latest": "^6.22.0",
-		"babel-preset-react": "^6.23.0",
-		"babel-preset-stage-0": "^6.22.0",
-		"eslint": "3.15.0",
-		"eslint-config-keystone": "^3.0.0",
-		"eslint-plugin-react": "^5.1.1",
-		"webpack": "^2.2.1"
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"start": "npm run build:server && nodemon server.bundle.js",
-		"build:server": "webpack --config webpack.server.config.js"
-	},
-	"graphql": {
-		"request": {
-			"url": "https://localhost:3000/graphql"
-		}
-	}
-};
-
-/***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("async");
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-graphql");
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-relay-router");
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-addons-css-transition-group");
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom");
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-relay");
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1548,29 +1594,33 @@ module.exports = require("react-router-relay");
 
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
-__webpack_require__(20).config();
-
+__webpack_require__(22).config();
+var logger = __webpack_require__(7);
 // Require keystone
 var keystone = __webpack_require__(1);
-var handlebars = __webpack_require__(22);
-var compression = __webpack_require__(15);
-var cors = __webpack_require__(19);
-var bodyParser = __webpack_require__(8);
-var cookieParser = __webpack_require__(18);
-var session = __webpack_require__(23);
-var MongoStore = __webpack_require__(17)(session);
-var express = __webpack_require__(21);
-var path = __webpack_require__(9);
-var favicon = __webpack_require__(26);
-var mongoose = __webpack_require__(24);
-var Promise = __webpack_require__(14);
-var requestIp = __webpack_require__(25);
-var history = __webpack_require__(16);
+var handlebars = __webpack_require__(24);
+var compression = __webpack_require__(17);
+var cors = __webpack_require__(21);
+var bodyParser = __webpack_require__(10);
+var cookieParser = __webpack_require__(20);
+var session = __webpack_require__(25);
+var MongoStore = __webpack_require__(19)(session);
+var express = __webpack_require__(23);
+var path = __webpack_require__(11);
+var favicon = __webpack_require__(28);
+var mongoose = __webpack_require__(26);
+var Promise = __webpack_require__(16);
+var requestIp = __webpack_require__(27);
+var history = __webpack_require__(18);
 var app = express();
 
+logger.log('info', 'STARTING APP');
 keystone.mongoose = Promise.promisifyAll(mongoose);
-
-app.use(express.static('public'));
+app.get('/js/bundle.js', function (req, res) {
+	res.setHeader('Content-Type', 'application/javascript');
+	res.sendFile('bundle.js', { root: __dirname + '/' });
+});
+//app.use(express.static('public'));
 app.use(express.static('images'));
 app.use(compression());
 app.use(cors());
@@ -1578,14 +1628,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(requestIp.mw());
-
+app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
-	'view engine': 'hbs',
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -1595,14 +1644,14 @@ keystone.init({
 });
 
 //keystone.app = app
-keystone.import('models');
+keystone.import('./lib/server/models');
 keystone.set('locals', {
-	_: __webpack_require__(2),
+	_: __webpack_require__(3),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable
 });
-keystone.set('routes', __webpack_require__(13));
+keystone.set('routes', __webpack_require__(15));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],

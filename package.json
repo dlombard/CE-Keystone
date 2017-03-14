@@ -42,7 +42,9 @@
     "react-router-relay": "^0.13.5",
     "request-ip": "^2.0.1",
     "serve-favicon": "^2.4.1",
-    "validator": "^7.0.0"
+    "validator": "^7.0.0",
+    "winston": "^2.3.1",
+    "winston-daily-rotate-file": "^1.4.6"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
