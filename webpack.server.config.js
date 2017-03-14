@@ -23,7 +23,7 @@ module.exports = {
 
         return ext
       }, {}),
-    { winston: 'require("winston")' }
+    { winston: require("winston") }
   ],
 
   node: {

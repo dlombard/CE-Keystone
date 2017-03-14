@@ -81,5 +81,5 @@ type SongEdge {
 }
 
 type Viewer {
-  songs(after: String, first: Int, before: String, last: Int, book: String): SongConnection
+  songs(after: String, first: Int, before: String, last: Int, book: String, language: String): SongConnection
 }

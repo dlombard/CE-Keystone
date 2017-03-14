@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 50);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -110,19 +110,13 @@ module.exports = require("react-relay");
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("winston");
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var _ = __webpack_require__(3);
-var logger = __webpack_require__(7);
+var logger = __webpack_require__(9);
 
 var buildFind = function buildFind(args, query) {
     if (args.id) {
@@ -131,7 +125,6 @@ var buildFind = function buildFind(args, query) {
     }
     query.where = args;
     var data = {};
-    logger.info('SORT IS: ' + JSON.stringify(query.sort));
     return query.model.find(query.where).sort(query.sort).execAsync().then(function (results) {
         return results;
     }).catch(function (err) {
@@ -175,10 +168,16 @@ var queryBuilder = function queryBuilder(op, model, args, opts, doc) {
 module.exports = queryBuilder;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("winston");
 
 /***/ }),
 /* 10 */
@@ -209,7 +208,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(9);
+var _reactRouter = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -251,7 +250,7 @@ var _require2 = __webpack_require__(4),
     toGlobalId = _require2.toGlobalId;
 
 var keystone = __webpack_require__(1);
-var db = __webpack_require__(8);
+var db = __webpack_require__(7);
 
 var _nodeDefinitions = nodeDefinitions(function (globalId) {
     var _fromGlobalId = fromGlobalId(globalId),
@@ -384,17 +383,17 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(48);
+var _server = __webpack_require__(50);
 
 var _server2 = _interopRequireDefault(_server);
 
-var _reactRouter = __webpack_require__(9);
+var _reactRouter = __webpack_require__(8);
 
-var _routes = __webpack_require__(33);
+var _routes = __webpack_require__(35);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _graphqlHTTP = __webpack_require__(39);
+var _graphqlHTTP = __webpack_require__(41);
 
 var _graphqlHTTP2 = _interopRequireDefault(_graphqlHTTP);
 
@@ -406,7 +405,7 @@ var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _isomorphicRelayRouter = __webpack_require__(45);
+var _isomorphicRelayRouter = __webpack_require__(47);
 
 var _isomorphicRelayRouter2 = _interopRequireDefault(_isomorphicRelayRouter);
 
@@ -414,11 +413,11 @@ var _path = __webpack_require__(11);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _winston = __webpack_require__(7);
+var _winston = __webpack_require__(9);
 
 var _winston2 = _interopRequireDefault(_winston);
 
-var _songs = __webpack_require__(42);
+var _songs = __webpack_require__(44);
 
 var _songs2 = _interopRequireDefault(_songs);
 
@@ -473,84 +472,124 @@ exports = module.exports = function (app) {
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("bluebird");
+"use strict";
+
+
+var winston = __webpack_require__(9);
+__webpack_require__(52);
+
+var logger = new winston.Logger({
+    transports: [
+    /*        new winston.transports.Console({
+                level: 'debug',
+                handleExceptions: true,
+                json: false,
+                colorize: true
+            }),*/
+    new winston.transports.DailyRotateFile({
+        filename: 'cesperance-backend.log.',
+        datePattern: 'yyyy-MM-dd',
+        prepend: false,
+        level: 'info'
+    })],
+    exitOnError: false
+});
+
+module.exports = logger;
+module.exports.stream = {
+    write: function write(message, encoding) {
+        logger.info(message);
+    }
+};
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = require("compression");
+module.exports = require("bluebird");
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = require("connect-history-api-fallback");
+module.exports = require("compression");
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = require("connect-mongo");
+module.exports = require("connect-history-api-fallback");
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = require("cookie-parser");
+module.exports = require("connect-mongo");
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = require("cors");
+module.exports = require("cookie-parser");
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = require("dotenv");
+module.exports = require("cors");
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("dotenv");
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-handlebars");
+module.exports = require("express");
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-session");
+module.exports = require("express-handlebars");
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongoose");
+module.exports = require("express-session");
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = require("request-ip");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = require("serve-favicon");
+module.exports = require("morgan");
 
 /***/ }),
 /* 29 */
+/***/ (function(module, exports) {
+
+module.exports = require("request-ip");
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports = require("serve-favicon");
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -568,11 +607,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = __webpack_require__(46);
+var _reactAddonsCssTransitionGroup = __webpack_require__(48);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _Header = __webpack_require__(30);
+var _Header = __webpack_require__(32);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -618,7 +657,7 @@ var Base = function (_React$Component) {
 exports.default = Base;
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -702,7 +741,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -757,7 +796,7 @@ var SearchBar = function (_React$Component) {
 exports.default = SearchBar;
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -787,7 +826,7 @@ var queries = exports.queries = { viewer: function viewer() {
   } };
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -801,41 +840,41 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(47);
+var _reactDom = __webpack_require__(49);
 
-var _reactRouter = __webpack_require__(9);
+var _reactRouter = __webpack_require__(8);
 
-var _App = __webpack_require__(35);
+var _App = __webpack_require__(37);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Home = __webpack_require__(36);
+var _Home = __webpack_require__(38);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _SongsList = __webpack_require__(38);
+var _SongsList = __webpack_require__(40);
 
 var _SongsList2 = _interopRequireDefault(_SongsList);
 
-var _Song = __webpack_require__(37);
+var _Song = __webpack_require__(39);
 
 var _Song2 = _interopRequireDefault(_Song);
 
-var _About = __webpack_require__(34);
+var _About = __webpack_require__(36);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Base = __webpack_require__(29);
+var _Base = __webpack_require__(31);
 
 var _Base2 = _interopRequireDefault(_Base);
 
-var _Songs = __webpack_require__(32);
+var _Songs = __webpack_require__(34);
 
 var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _reactRouterRelay = __webpack_require__(49);
+var _reactRouterRelay = __webpack_require__(51);
 
 var _reactRouterRelay2 = _interopRequireDefault(_reactRouterRelay);
 
@@ -865,7 +904,7 @@ module.exports = _jsx(_reactRouter.Router, {
 }))));
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -913,7 +952,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -952,7 +991,7 @@ exports.default = _react2.default.createClass({
 });
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -972,7 +1011,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__(5);
 
-var _SearchBar = __webpack_require__(31);
+var _SearchBar = __webpack_require__(33);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -1062,7 +1101,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1126,7 +1165,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1190,7 +1229,7 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
     initialVariables: { book: "MJ" },
     prepareVariables: function prepareVariables(prevVariables) {
         console.log(prevVariables);
-        return { book: _lodash2.default.upperCase(prevVariables.book) };
+        return { book: _lodash2.default.upperCase(prevVariables.book), lang: "fr" };
     },
     fragments: {
 
@@ -1205,6 +1244,14 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                             value: {
                                 kind: 'CallVariable',
                                 callVariableName: 'book'
+                            }
+                        }, {
+                            kind: 'Call',
+                            metadata: {},
+                            name: 'language',
+                            value: {
+                                kind: 'CallVariable',
+                                callVariableName: 'lang'
                             }
                         }, {
                             kind: 'Call',
@@ -1338,14 +1385,14 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
 }*/
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var graphqlHTTP = __webpack_require__(44);
-var QueryType = __webpack_require__(40);
+var graphqlHTTP = __webpack_require__(46);
+var QueryType = __webpack_require__(42);
 
 var _require = __webpack_require__(2),
     GraphQLSchema = _require.GraphQLSchema;
@@ -1362,7 +1409,7 @@ module.exports = function initGraphQL() {
 };
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1399,8 +1446,8 @@ var _require3 = __webpack_require__(13),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
-var db = __webpack_require__(8);
-var Viewer = __webpack_require__(41);
+var db = __webpack_require__(7);
+var Viewer = __webpack_require__(43);
 /*var Viewer = new GraphQLObjectType({
     name: 'Viewer',
     fields: () => ({
@@ -1433,7 +1480,7 @@ var QueryType = new GraphQLObjectType({
 module.exports = QueryType;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1468,7 +1515,7 @@ var _require2 = __webpack_require__(4),
 
 var keystone = __webpack_require__(1);
 var SongType = __webpack_require__(14);
-var db = __webpack_require__(8);
+var db = __webpack_require__(7);
 
 var Viewer = new GraphQLObjectType({
     name: 'Viewer',
@@ -1477,10 +1524,11 @@ var Viewer = new GraphQLObjectType({
             songs: {
                 type: songConnection,
                 args: _extends({}, connectionArgs, {
-                    book: { type: GraphQLString }
+                    book: { type: GraphQLString },
+                    language: { type: GraphQLString }
                 }),
                 resolve: function resolve(viewer, args) {
-                    return connectionFromPromisedArray(db('FIND', keystone.list('Song').model, { 'book.abbrv': args.book }, { sort: { num: 1 } }, null).then(function (collection) {
+                    return connectionFromPromisedArray(db('FIND', keystone.list('Song').model, { 'book.abbrv': args.book, 'language': args.language }, { sort: { num: 1 } }, null).then(function (collection) {
                         return collection;
                     }), args);
                 }
@@ -1501,13 +1549,13 @@ var _connectionDefinition = connectionDefinitions({
 module.exports = Viewer;
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var async = __webpack_require__(43),
+var async = __webpack_require__(45),
     keystone = __webpack_require__(1);
 
 var Song = keystone.list('Song');
@@ -1544,49 +1592,55 @@ exports.get = function (req, res) {
 };
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("async");
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-graphql");
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-relay-router");
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-addons-css-transition-group");
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom");
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-relay");
 
 /***/ }),
-/* 50 */
+/* 52 */
+/***/ (function(module, exports) {
+
+module.exports = require("winston-daily-rotate-file");
+
+/***/ }),
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1594,24 +1648,24 @@ module.exports = require("react-router-relay");
 
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
-__webpack_require__(22).config();
-var logger = __webpack_require__(7);
+__webpack_require__(23).config();
+var logger = __webpack_require__(16);
 // Require keystone
 var keystone = __webpack_require__(1);
-var handlebars = __webpack_require__(24);
-var compression = __webpack_require__(17);
-var cors = __webpack_require__(21);
+var handlebars = __webpack_require__(25);
+var compression = __webpack_require__(18);
+var cors = __webpack_require__(22);
 var bodyParser = __webpack_require__(10);
-var cookieParser = __webpack_require__(20);
-var session = __webpack_require__(25);
-var MongoStore = __webpack_require__(19)(session);
-var express = __webpack_require__(23);
+var cookieParser = __webpack_require__(21);
+var session = __webpack_require__(26);
+var MongoStore = __webpack_require__(20)(session);
+var express = __webpack_require__(24);
 var path = __webpack_require__(11);
-var favicon = __webpack_require__(28);
-var mongoose = __webpack_require__(26);
-var Promise = __webpack_require__(16);
-var requestIp = __webpack_require__(27);
-var history = __webpack_require__(18);
+var favicon = __webpack_require__(30);
+var mongoose = __webpack_require__(27);
+var Promise = __webpack_require__(17);
+var requestIp = __webpack_require__(29);
+var history = __webpack_require__(19);
 var app = express();
 
 logger.log('info', 'STARTING APP');
@@ -1629,6 +1683,7 @@ app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(requestIp.mw());
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
+app.use(__webpack_require__(28)("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',

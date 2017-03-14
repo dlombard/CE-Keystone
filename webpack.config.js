@@ -1,7 +1,7 @@
 var webpack = require('webpack')
 
 module.exports = {
-    entry: './app/index.js',
+    entry: './lib/app/index.js',
 
     output: {
         path: 'public',

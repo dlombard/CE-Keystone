@@ -1,7 +1,7 @@
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').config();
-var logger = require('winston');
+var logger = require('./logger');
 // Require keystone
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
@@ -35,6 +35,7 @@ app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(requestIp.mw())
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
+app.use(require('morgan')("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
