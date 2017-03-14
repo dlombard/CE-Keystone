@@ -9,12 +9,18 @@ var compression = require('compression');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var express = require('express')
 var path = require('path')
 var favicon = require('serve-favicon')
+var mongoose = require('mongoose')
+var Promise = require('bluebird')
+var requestIp = require('request-ip')
+var history = require('connect-history-api-fallback');
 var app = express();
+
+keystone.mongoose = Promise.promisifyAll(mongoose);
 
 app.use(express.static('public'));
 app.use(express.static('images'));
@@ -23,13 +29,15 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(requestIp.mw())
 
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
-	'views': 'public',
+	'views': 'templates/views',
+	'view engine': 'hbs',
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -46,11 +54,12 @@ keystone.set('locals', {
 	utils: keystone.utils,
 	editable: keystone.content.editable,
 });
-keystone.set('routes', require('./routes'));
+keystone.set('routes', require('./routes/react'));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
 	users: 'users',
+	songs: 'songs'
 });
 
 

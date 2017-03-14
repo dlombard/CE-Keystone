@@ -84,3 +84,6 @@ h6 {
   font-family: "Raleway", serif;
   padding-bottom: 30px;
   color: #333; }
+
+p {
+  line-height: 1.1; }

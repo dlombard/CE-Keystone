@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var meta = require('../plugins/SongMeta')
 
 /**
  * Song Model
@@ -8,6 +9,7 @@ var Types = keystone.Field.Types;
 
 var Song = new keystone.List('Song', {
     map: { name: 'title' },
+    track: true,
 });
 
 Song.add({
@@ -16,22 +18,24 @@ Song.add({
     book: {
         name: { type: String },
         abbrv: { type: String },
-        languages: { type: String, many: true  }
+        languages: { type: String, many: true }
     },
     lyrics: { type: String },
-    lyrics_Markdown: { type: Types.Markdown },
+    lyrics_Markdown: { type: Types.Markdown, markedOptions: { breaks: true } },
     lyrics_Html: { type: Types.Html, wysiwyg: true },
-    tags: { type: String, many: true  },
-    videos: { type: String, many: true  },
+    tags: { type: String, many: true },
+    videos: { type: String, many: true },
     references: {
         author: { type: String },
         book: { type: String },
         year: { type: String },
     },
-    partitions: { type: String, many: true  },
+    partitions: { type: String, many: true },
     language: { type: String },
-    songId: { type: String, }
-});
+    songId: { type: String, },
 
+
+});
+Song.schema.plugin(meta)
 Song.set('timestamps', { createdAt: 'createdAt', updatedAt: 'updatedAt' });
 Song.register();

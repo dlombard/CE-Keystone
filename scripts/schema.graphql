@@ -1,0 +1,52 @@
+type Book {
+  name: String
+  abbrv: String
+  languages: String
+}
+
+type Markdown {
+  md: String
+  html: String
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type Query {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+  viewer: Viewer
+}
+
+type References {
+  author: String
+  book: String
+  year: String
+}
+
+type Song implements Node {
+  # The ID of an object
+  id: ID!
+  title: String
+  num: Int
+  book: Book
+  lyrics: String
+  lyrics_Markdown: Markdown
+  lyrics_Html: String
+  tags: String
+  videos: String
+  references: References
+  partitions: String
+  language: String
+  songId: String
+}
+
+type Viewer {
+  songs(book: String): [Song]
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import SearchBar from '../components/SearchBar'
+import NavLink from '../components/NavLink'
 
 export default class Home extends React.Component {
     render() {
@@ -16,52 +17,52 @@ export default class Home extends React.Component {
                     <Col md={10} mdOffset={1} >
                         <Row>
                             <Col xs={6}>
-                                <a href="#" >
-                                    <img src="/images/ce.png" style={{ maxWidth: 60 }} />
-                                    <h5> Chant d'Esperance</h5>
-                                </a>
+                                <NavLink to="/ce">
+                                        <img src="/images/ce.png" style={{ maxWidth: 60 }} />
+                                        <h5> Chant d'Esperance</h5>
+                                </NavLink>
                             </Col>
                             <Col xs={6}>
-                                <a href="#">
+                                <NavLink to="/mj">
                                     <img src="/images/mj.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <a href="#">
+                                <NavLink to="/ee">
                                     <img src="/images/ee.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                             <Col xs={6}>
-                                <a href="#">
+                                <NavLink to="/vr">
                                     <img src="/images/vr.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <a href="#">
+                               <NavLink to="/hc">
                                     <img src="/images/hc.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                             <Col xs={6}>
-                                <a href="#">
+                                <NavLink to="/rn">
                                     <img src="/images/rn.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <a href="#">
+                                <NavLink to="/ga">
                                     <img src="/images/ga.png" style={{ maxWidth: 60 }} />
                                     <h5> Chant d'Esperance</h5>
-                                </a>
+                                </NavLink>
                             </Col>
                         </Row>
                     </Col>
