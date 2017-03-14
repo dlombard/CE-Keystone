@@ -1,6 +1,7 @@
    .search-bar {
    	.form-control {
-   		border: 1px solid $bright-blue;
+   		border: 1px solid;
+   		border-color: $ce-blue;
    		border-radius: 0px;
    	}
    }

@@ -23354,23 +23354,56 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SongsList = function (_React$Component) {
     _inherits(SongsList, _React$Component);
 
-    function SongsList() {
+    function SongsList(props) {
         _classCallCheck(this, SongsList);
 
-        return _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).call(this, props));
+
+        _this.state = {
+            borderColorClass: 'ce'
+        };
+        return _this;
     }
 
     _createClass(SongsList, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log(_lodash2.default.split(this.props.location.pathname, '/')[1]);
+            this.setState = {
+                borderColorClass: _lodash2.default.split(this.props.location.pathname, '/')[1]
+            };
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var viewer = this.props.viewer;
 
-            return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, ' Le Chant d\'Esp\xE9rance')), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_SearchBar2.default, {})), viewer.songs.edges.map(function (_ref) {
+            return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+                sm: 12,
+                md: 9
+            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, viewer.songs.edges[0].node.book.name)), _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
+                className: 'button-primary'
+            }, void 0, 'French'), _jsx(_reactBootstrap.Button, {
+                className: 'button-primary',
+                active: true
+            }, void 0, 'Kreol')), _jsx(_SearchBar2.default, {
+                style: { width: '100%', paddingBottom: 20 },
+                placeholder: 'Filter'
+            }), _jsx(_reactBootstrap.ListGroup, {
+                className: 'song-list'
+            }, void 0, viewer.songs.edges.map(function (_ref) {
                 var node = _ref.node;
-                return _jsx('div', {}, node.id, _jsx('span', {}, void 0, node.num + ' ' + node.title), _jsx('br', {}), _jsx('span', {
-                    dangerouslySetInnerHTML: { __html: node.lyrics_Markdown.html }
-                }), _jsx('br', {}), _jsx('br', {}));
-            }));
+                return _jsx(_reactBootstrap.ListGroupItem, {
+                    className: _lodash2.default.split(_this2.props.location.pathname, '/')[1]
+                }, void 0, node.num + '. ' + node.title);
+            }))), _jsx(_reactBootstrap.Col, {
+                smHidden: true,
+                md: 3
+            }, void 0, _jsx('img', {
+                src: 'http://placehold.it/300x150'
+            }))));
         }
     }]);
 
@@ -23378,9 +23411,8 @@ var SongsList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = _reactRelay2.default.createContainer(SongsList, {
-    initialVariables: { book: "MJ" },
+    initialVariables: { book: "MJ", lang: "fr" },
     prepareVariables: function prepareVariables(prevVariables) {
-        console.log(prevVariables);
         return { book: _lodash2.default.upperCase(prevVariables.book), lang: "fr" };
     },
     fragments: {
@@ -23413,7 +23445,7 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                             name: 'first',
                             value: {
                                 kind: 'CallValue',
-                                callValue: 10
+                                callValue: 400
                             }
                         }],
                         children: [{
@@ -23437,22 +23469,17 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                                     type: 'Int'
                                 }, {
                                     children: [{
-                                        fieldName: 'md',
-                                        kind: 'Field',
-                                        metadata: {},
-                                        type: 'String'
-                                    }, {
-                                        fieldName: 'html',
+                                        fieldName: 'name',
                                         kind: 'Field',
                                         metadata: {},
                                         type: 'String'
                                     }],
-                                    fieldName: 'lyrics_Markdown',
+                                    fieldName: 'book',
                                     kind: 'Field',
                                     metadata: {
                                         canHaveSubselections: true
                                     },
-                                    type: 'Markdown'
+                                    type: 'Book'
                                 }],
                                 fieldName: 'node',
                                 kind: 'Field',
@@ -23862,6 +23889,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__(121);
 
+var _classnames = __webpack_require__(10);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23873,20 +23904,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SearchBar = function (_React$Component) {
     _inherits(SearchBar, _React$Component);
 
-    function SearchBar() {
+    function SearchBar(props) {
         _classCallCheck(this, SearchBar);
 
-        return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+        _this.state = {
+            placeholder: 'Search'
+        };
+        return _this;
     }
 
     _createClass(SearchBar, [{
         key: 'render',
         value: function render() {
+            var formClass = (0, _classnames2.default)('search-bar', this.props.formClass);
             return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Form, {
-                className: 'search-bar'
+                className: formClass,
+                style: this.props.style
             }, void 0, _jsx(_reactBootstrap.FormGroup, {}, void 0, _jsx(_reactBootstrap.FormControl, {
                 type: 'text',
-                placeholder: 'Search'
+                placeholder: this.props.placeholder || this.state.placeholder
             }))));
         }
     }]);

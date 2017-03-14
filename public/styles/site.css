@@ -5,8 +5,8 @@ nav {
 
 .header {
   border-radius: 0;
-  background-color: #2158da;
-  border-color: #2158da;
+  background-color: #045ff3;
+  border-color: #045ff3;
   height: 40px; }
 
 .header .navbar-nav > li > a {
@@ -23,7 +23,8 @@ input.form-control {
   box-sizing: border-box; }
 
 .search-bar .form-control {
-  border: 1px solid #2158da;
+  border: 1px solid;
+  border-color: #045ff3;
   border-radius: 0px; }
 
 #header {
@@ -46,7 +47,7 @@ input.form-control {
   text-align: center; }
 
 body {
-  font-family: 100% "Raleway", serif; }
+  font-family: "Raleway", serif; }
 
 .search-bar {
   width: 60%;
@@ -87,3 +88,58 @@ h6 {
 
 p {
   line-height: 1.1; }
+
+.btn {
+  border-radius: 1px;
+  border: 0px; }
+
+.btn-toolbar {
+  padding-bottom: 5px; }
+
+.button-primary {
+  background-color: #045ff3;
+  color: white;
+  border: 0; }
+
+.song-list .list-group-item:last-child,
+.song-list .list-group-item:first-child {
+  border-radius: 1px; }
+
+.song-list .list-group-item {
+  text-align: left;
+  font-weight: 600; }
+
+.ce {
+  border-color: #045ff3; }
+  .ce .form-control {
+    border-color: #045ff3; }
+
+.mj {
+  border-color: #da26d8; }
+  .mj .form-control {
+    border-color: #da26d8; }
+
+.ee {
+  border-color: #777474; }
+  .ee .form-control {
+    border-color: #777474; }
+
+.vr {
+  border-color: #afdc03; }
+  .vr .form-control {
+    border-color: #afdc03; }
+
+.rn {
+  border-color: #24dc86; }
+  .rn .form-control {
+    border-color: #24dc86; }
+
+.hc {
+  border-color: #fd8903; }
+  .hc .form-control {
+    border-color: #fd8903; }
+
+.ga {
+  border-color: #33a3f2; }
+  .ga .form-control {
+    border-color: #33a3f2; }

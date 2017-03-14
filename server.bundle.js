@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 53);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -88,19 +88,19 @@ module.exports = require("graphql");
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash");
+module.exports = require("react-bootstrap");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-relay");
+module.exports = require("lodash");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-bootstrap");
+module.exports = require("graphql-relay");
 
 /***/ }),
 /* 6 */
@@ -115,7 +115,7 @@ module.exports = require("react-relay");
 "use strict";
 
 
-var _ = __webpack_require__(3);
+var _ = __webpack_require__(4);
 var logger = __webpack_require__(9);
 
 var buildFind = function buildFind(args, query) {
@@ -226,6 +226,72 @@ exports.default = _react2.default.createClass({
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(3);
+
+var _classnames = __webpack_require__(46);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchBar = function (_React$Component) {
+    _inherits(SearchBar, _React$Component);
+
+    function SearchBar(props) {
+        _classCallCheck(this, SearchBar);
+
+        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+        _this.state = {
+            placeholder: 'Search'
+        };
+        return _this;
+    }
+
+    _createClass(SearchBar, [{
+        key: 'render',
+        value: function render() {
+            var formClass = (0, _classnames2.default)('search-bar', this.props.formClass);
+            return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Form, {
+                className: formClass,
+                style: this.props.style
+            }, void 0, _jsx(_reactBootstrap.FormGroup, {}, void 0, _jsx(_reactBootstrap.FormControl, {
+                type: 'text',
+                placeholder: this.props.placeholder || this.state.placeholder
+            }))));
+        }
+    }]);
+
+    return SearchBar;
+}(_react2.default.Component);
+
+exports.default = SearchBar;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _require = __webpack_require__(2),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
@@ -238,7 +304,7 @@ var _require = __webpack_require__(2),
     GraphQLNonNull = _require.GraphQLNonNull,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(4),
+var _require2 = __webpack_require__(5),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -276,7 +342,7 @@ var _nodeDefinitions = nodeDefinitions(function (globalId) {
 module.exports = { nodeInterface: nodeInterface, nodeField: nodeField };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -295,7 +361,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(4),
+var _require2 = __webpack_require__(5),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -306,7 +372,7 @@ var _require2 = __webpack_require__(4),
     nodeDefinitions = _require2.nodeDefinitions,
     toGlobalId = _require2.toGlobalId;
 
-var _require3 = __webpack_require__(13),
+var _require3 = __webpack_require__(14),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
@@ -371,7 +437,7 @@ var SongType = new GraphQLObjectType({
 module.exports = SongType;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -383,7 +449,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(50);
+var _server = __webpack_require__(51);
 
 var _server2 = _interopRequireDefault(_server);
 
@@ -405,7 +471,7 @@ var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _isomorphicRelayRouter = __webpack_require__(47);
+var _isomorphicRelayRouter = __webpack_require__(48);
 
 var _isomorphicRelayRouter2 = _interopRequireDefault(_isomorphicRelayRouter);
 
@@ -471,14 +537,14 @@ exports = module.exports = function (app) {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var winston = __webpack_require__(9);
-__webpack_require__(52);
+__webpack_require__(53);
 
 var logger = new winston.Logger({
     transports: [
@@ -505,91 +571,91 @@ module.exports.stream = {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("bluebird");
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("compression");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("connect-history-api-fallback");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("connect-mongo");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("cookie-parser");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-handlebars");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = require("mongoose");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = require("morgan");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("request-ip");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("serve-favicon");
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -607,11 +673,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = __webpack_require__(48);
+var _reactAddonsCssTransitionGroup = __webpack_require__(49);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _Header = __webpack_require__(32);
+var _Header = __webpack_require__(33);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -657,7 +723,7 @@ var Base = function (_React$Component) {
 exports.default = Base;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,7 +741,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(5);
+var _reactBootstrap = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -741,61 +807,6 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactBootstrap = __webpack_require__(5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SearchBar = function (_React$Component) {
-    _inherits(SearchBar, _React$Component);
-
-    function SearchBar() {
-        _classCallCheck(this, SearchBar);
-
-        return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
-    }
-
-    _createClass(SearchBar, [{
-        key: 'render',
-        value: function render() {
-            return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Form, {
-                className: 'search-bar'
-            }, void 0, _jsx(_reactBootstrap.FormGroup, {}, void 0, _jsx(_reactBootstrap.FormControl, {
-                type: 'text',
-                placeholder: 'Search'
-            }))));
-        }
-    }]);
-
-    return SearchBar;
-}(_react2.default.Component);
-
-exports.default = SearchBar;
-
-/***/ }),
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -840,7 +851,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(49);
+var _reactDom = __webpack_require__(50);
 
 var _reactRouter = __webpack_require__(8);
 
@@ -864,7 +875,7 @@ var _About = __webpack_require__(36);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Base = __webpack_require__(31);
+var _Base = __webpack_require__(32);
 
 var _Base2 = _interopRequireDefault(_Base);
 
@@ -874,7 +885,7 @@ var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _reactRouterRelay = __webpack_require__(51);
+var _reactRouterRelay = __webpack_require__(52);
 
 var _reactRouterRelay2 = _interopRequireDefault(_reactRouterRelay);
 
@@ -1009,9 +1020,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(5);
+var _reactBootstrap = __webpack_require__(3);
 
-var _SearchBar = __webpack_require__(33);
+var _SearchBar = __webpack_require__(13);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -1119,7 +1130,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(5);
+var _reactBootstrap = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1187,9 +1198,15 @@ var _reactRelay = __webpack_require__(6);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _lodash = __webpack_require__(3);
+var _lodash = __webpack_require__(4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
+
+var _reactBootstrap = __webpack_require__(3);
+
+var _SearchBar = __webpack_require__(13);
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1202,23 +1219,56 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SongsList = function (_React$Component) {
     _inherits(SongsList, _React$Component);
 
-    function SongsList() {
+    function SongsList(props) {
         _classCallCheck(this, SongsList);
 
-        return _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).call(this, props));
+
+        _this.state = {
+            borderColorClass: 'ce'
+        };
+        return _this;
     }
 
     _createClass(SongsList, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log(_lodash2.default.split(this.props.location.pathname, '/')[1]);
+            this.setState = {
+                borderColorClass: _lodash2.default.split(this.props.location.pathname, '/')[1]
+            };
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var viewer = this.props.viewer;
 
-            return _jsx('div', {}, void 0, viewer.songs.edges.map(function (_ref) {
+            return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+                sm: 12,
+                md: 9
+            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, viewer.songs.edges[0].node.book.name)), _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
+                className: 'button-primary'
+            }, void 0, 'French'), _jsx(_reactBootstrap.Button, {
+                className: 'button-primary',
+                active: true
+            }, void 0, 'Kreol')), _jsx(_SearchBar2.default, {
+                style: { width: '100%', paddingBottom: 20 },
+                placeholder: 'Filter'
+            }), _jsx(_reactBootstrap.ListGroup, {
+                className: 'song-list'
+            }, void 0, viewer.songs.edges.map(function (_ref) {
                 var node = _ref.node;
-                return _jsx('div', {}, node.id, _jsx('span', {}, void 0, node.num + ' ' + node.title), _jsx('br', {}), _jsx('span', {
-                    dangerouslySetInnerHTML: { __html: node.lyrics_Markdown.html }
-                }), _jsx('br', {}), _jsx('br', {}));
-            }));
+                return _jsx(_reactBootstrap.ListGroupItem, {
+                    className: _lodash2.default.split(_this2.props.location.pathname, '/')[1]
+                }, void 0, node.num + '. ' + node.title);
+            }))), _jsx(_reactBootstrap.Col, {
+                smHidden: true,
+                md: 3
+            }, void 0, _jsx('img', {
+                src: 'http://placehold.it/300x150'
+            }))));
         }
     }]);
 
@@ -1226,9 +1276,8 @@ var SongsList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = _reactRelay2.default.createContainer(SongsList, {
-    initialVariables: { book: "MJ" },
+    initialVariables: { book: "MJ", lang: "fr" },
     prepareVariables: function prepareVariables(prevVariables) {
-        console.log(prevVariables);
         return { book: _lodash2.default.upperCase(prevVariables.book), lang: "fr" };
     },
     fragments: {
@@ -1261,7 +1310,7 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                             name: 'first',
                             value: {
                                 kind: 'CallValue',
-                                callValue: 10
+                                callValue: 400
                             }
                         }],
                         children: [{
@@ -1285,22 +1334,17 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
                                     type: 'Int'
                                 }, {
                                     children: [{
-                                        fieldName: 'md',
-                                        kind: 'Field',
-                                        metadata: {},
-                                        type: 'String'
-                                    }, {
-                                        fieldName: 'html',
+                                        fieldName: 'name',
                                         kind: 'Field',
                                         metadata: {},
                                         type: 'String'
                                     }],
-                                    fieldName: 'lyrics_Markdown',
+                                    fieldName: 'book',
                                     kind: 'Field',
                                     metadata: {
                                         canHaveSubselections: true
                                     },
-                                    type: 'Markdown'
+                                    type: 'Book'
                                 }],
                                 fieldName: 'node',
                                 kind: 'Field',
@@ -1391,7 +1435,7 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
 "use strict";
 
 
-var graphqlHTTP = __webpack_require__(46);
+var graphqlHTTP = __webpack_require__(47);
 var QueryType = __webpack_require__(42);
 
 var _require = __webpack_require__(2),
@@ -1428,7 +1472,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(4),
+var _require2 = __webpack_require__(5),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -1440,9 +1484,9 @@ var _require2 = __webpack_require__(4),
     toGlobalId = _require2.toGlobalId;
 
 var keystone = __webpack_require__(1);
-var SongType = __webpack_require__(14);
+var SongType = __webpack_require__(15);
 
-var _require3 = __webpack_require__(13),
+var _require3 = __webpack_require__(14),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
@@ -1501,7 +1545,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(4),
+var _require2 = __webpack_require__(5),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -1514,7 +1558,7 @@ var _require2 = __webpack_require__(4),
     toGlobalId = _require2.toGlobalId;
 
 var keystone = __webpack_require__(1);
-var SongType = __webpack_require__(14);
+var SongType = __webpack_require__(15);
 var db = __webpack_require__(7);
 
 var Viewer = new GraphQLObjectType({
@@ -1559,7 +1603,7 @@ var async = __webpack_require__(45),
     keystone = __webpack_require__(1);
 
 var Song = keystone.list('Song');
-var _ = __webpack_require__(3);
+var _ = __webpack_require__(4);
 /**
  * List Songs
  */
@@ -1601,46 +1645,52 @@ module.exports = require("async");
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-graphql");
+module.exports = require("classnames");
 
 /***/ }),
 /* 47 */
 /***/ (function(module, exports) {
 
-module.exports = require("isomorphic-relay-router");
+module.exports = require("express-graphql");
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-addons-css-transition-group");
+module.exports = require("isomorphic-relay-router");
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-dom");
+module.exports = require("react-addons-css-transition-group");
 
 /***/ }),
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-dom/server");
+module.exports = require("react-dom");
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-relay");
+module.exports = require("react-dom/server");
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports) {
 
-module.exports = require("winston-daily-rotate-file");
+module.exports = require("react-router-relay");
 
 /***/ }),
 /* 53 */
+/***/ (function(module, exports) {
+
+module.exports = require("winston-daily-rotate-file");
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1648,24 +1698,24 @@ module.exports = require("winston-daily-rotate-file");
 
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
-__webpack_require__(23).config();
-var logger = __webpack_require__(16);
+__webpack_require__(24).config();
+var logger = __webpack_require__(17);
 // Require keystone
 var keystone = __webpack_require__(1);
-var handlebars = __webpack_require__(25);
-var compression = __webpack_require__(18);
-var cors = __webpack_require__(22);
+var handlebars = __webpack_require__(26);
+var compression = __webpack_require__(19);
+var cors = __webpack_require__(23);
 var bodyParser = __webpack_require__(10);
-var cookieParser = __webpack_require__(21);
-var session = __webpack_require__(26);
-var MongoStore = __webpack_require__(20)(session);
-var express = __webpack_require__(24);
+var cookieParser = __webpack_require__(22);
+var session = __webpack_require__(27);
+var MongoStore = __webpack_require__(21)(session);
+var express = __webpack_require__(25);
 var path = __webpack_require__(11);
-var favicon = __webpack_require__(30);
-var mongoose = __webpack_require__(27);
-var Promise = __webpack_require__(17);
-var requestIp = __webpack_require__(29);
-var history = __webpack_require__(19);
+var favicon = __webpack_require__(31);
+var mongoose = __webpack_require__(28);
+var Promise = __webpack_require__(18);
+var requestIp = __webpack_require__(30);
+var history = __webpack_require__(20);
 var app = express();
 
 logger.log('info', 'STARTING APP');
@@ -1683,7 +1733,7 @@ app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(requestIp.mw());
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
-app.use(__webpack_require__(28)("combined", { "stream": logger.stream }));
+app.use(__webpack_require__(29)("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
@@ -1701,12 +1751,12 @@ keystone.init({
 //keystone.app = app
 keystone.import('./lib/server/models');
 keystone.set('locals', {
-	_: __webpack_require__(3),
+	_: __webpack_require__(4),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable
 });
-keystone.set('routes', __webpack_require__(15));
+keystone.set('routes', __webpack_require__(16));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],

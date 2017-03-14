@@ -22,7 +22,7 @@
 }
 
 body {
-	font-family: 100% $raleway;
+	font-family: $raleway;
 }
 
 .search-bar {
@@ -42,6 +42,82 @@ body {
 	}
 }
 
-p{
+p {
 	line-height: 1.1;
+}
+
+.btn {
+	border-radius: $button-radius;
+	border: $button-border;
+}
+
+.btn-toolbar {
+	padding-bottom: 5px;
+}
+
+.button-primary {
+	background-color: $ce-blue;
+	color: white;
+	border: 0;
+}
+
+.song-list {
+	.list-group-item:last-child,
+	.list-group-item:first-child {
+		border-radius: 1px;
+	}
+	.list-group-item {
+		text-align: left;
+		font-weight: 600;
+	}
+
+}
+
+.ce {
+	border-color: $ce-blue;
+	.form-control {
+		border-color: $ce-blue;
+	}
+}
+
+.mj {
+	border-color: $mj-purple;
+	.form-control {
+		border-color: $mj-purple;
+	}
+}
+
+.ee {
+	border-color: $ee-gray;
+	.form-control {
+		border-color: $ee-gray;
+	}
+}
+
+.vr {
+	border-color: $vr-green;
+	.form-control {
+		border-color: $vr-green;
+	}
+}
+
+.rn {
+	border-color: $rn-green;
+	.form-control {
+		border-color: $rn-green;
+	}
+}
+
+.hc {
+	border-color: $hc-orange;
+	.form-control {
+		border-color: $hc-orange;
+	}
+}
+
+.ga {
+	border-color: $ga-blue;
+	.form-control {
+		border-color: $ga-blue;
+	}
 }
