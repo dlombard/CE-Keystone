@@ -23343,6 +23343,10 @@ var _SearchBar = __webpack_require__(269);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
+var _classnames = __webpack_require__(10);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23359,9 +23363,22 @@ var SongsList = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).call(this, props));
 
-        _this.state = {
-            borderColorClass: 'ce'
+        _this._renderSongs = function () {
+            return _this.props.viewer.songs.edges.map(function (_ref) {
+                var node = _ref.node;
+
+                return _jsx(_reactBootstrap.ListGroupItem, {
+                    className: _lodash2.default.split(_this.props.location.pathname, '/')[1]
+                }, void 0, node.num + '. ' + node.title);
+            });
         };
+
+        _this.state = {
+            borderColorClass: 'ce',
+            activeLanguage: 'fr'
+        };
+        _this._fetchLanguage = _this._fetchLanguage.bind(_this);
+
         return _this;
     }
 
@@ -23369,36 +23386,59 @@ var SongsList = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             console.log(_lodash2.default.split(this.props.location.pathname, '/')[1]);
-            this.setState = {
+            this.setState({
                 borderColorClass: _lodash2.default.split(this.props.location.pathname, '/')[1]
-            };
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {}
+    }, {
+        key: '_fetchLanguage',
+        value: function _fetchLanguage(event) {
+            var _this2 = this;
+
+            var lang = event.target.value;
+            if (this.state.activeLanguage !== lang) {
+
+                this.setState({
+                    activeLanguage: lang
+                }, function () {
+                    _this2.props.relay.setVariables({
+                        lang: lang
+                    });
+                });
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var viewer = this.props.viewer;
+            var _this3 = this;
 
             return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 sm: 12,
                 md: 9
-            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, viewer.songs.edges[0].node.book.name)), _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
-                className: 'button-primary'
-            }, void 0, 'French'), _jsx(_reactBootstrap.Button, {
-                className: 'button-primary',
-                active: true
-            }, void 0, 'Kreol')), _jsx(_SearchBar2.default, {
+            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, this.props.viewer.songs.edges[0].node.book.name)))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+                sm: 12,
+                md: 9
+            }, void 0, _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
+                className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'fr' ? 'active' : ''),
+                value: 'fr',
+                onClick: function onClick(e) {
+                    return _this3._fetchLanguage(e);
+                }
+            }, void 0, ' French'), _jsx(_reactBootstrap.Button, {
+                className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'ht' ? 'active' : ''),
+                value: 'ht',
+                onClick: function onClick(e) {
+                    return _this3._fetchLanguage(e);
+                }
+            }, void 0, ' Kreol')), _jsx(_SearchBar2.default, {
                 style: { width: '100%', paddingBottom: 20 },
                 placeholder: 'Filter'
             }), _jsx(_reactBootstrap.ListGroup, {
                 className: 'song-list'
-            }, void 0, viewer.songs.edges.map(function (_ref) {
-                var node = _ref.node;
-                return _jsx(_reactBootstrap.ListGroupItem, {
-                    className: _lodash2.default.split(_this2.props.location.pathname, '/')[1]
-                }, void 0, node.num + '. ' + node.title);
-            }))), _jsx(_reactBootstrap.Col, {
+            }, void 0, this._renderSongs())), _jsx(_reactBootstrap.Col, {
                 smHidden: true,
                 md: 3
             }, void 0, _jsx('img', {
@@ -23413,7 +23453,7 @@ var SongsList = function (_React$Component) {
 exports.default = _reactRelay2.default.createContainer(SongsList, {
     initialVariables: { book: "MJ", lang: "fr" },
     prepareVariables: function prepareVariables(prevVariables) {
-        return { book: _lodash2.default.upperCase(prevVariables.book), lang: "fr" };
+        return { book: _lodash2.default.upperCase(prevVariables.book), lang: prevVariables.lang };
     },
     fragments: {
 

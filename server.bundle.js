@@ -240,7 +240,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__(3);
 
-var _classnames = __webpack_require__(46);
+var _classnames = __webpack_require__(16);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -438,6 +438,12 @@ module.exports = SongType;
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("classnames");
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -455,11 +461,11 @@ var _server2 = _interopRequireDefault(_server);
 
 var _reactRouter = __webpack_require__(8);
 
-var _routes = __webpack_require__(35);
+var _routes = __webpack_require__(36);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _graphqlHTTP = __webpack_require__(41);
+var _graphqlHTTP = __webpack_require__(42);
 
 var _graphqlHTTP2 = _interopRequireDefault(_graphqlHTTP);
 
@@ -483,7 +489,7 @@ var _winston = __webpack_require__(9);
 
 var _winston2 = _interopRequireDefault(_winston);
 
-var _songs = __webpack_require__(44);
+var _songs = __webpack_require__(45);
 
 var _songs2 = _interopRequireDefault(_songs);
 
@@ -537,7 +543,7 @@ exports = module.exports = function (app) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -571,91 +577,91 @@ module.exports.stream = {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("bluebird");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("compression");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("connect-history-api-fallback");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("connect-mongo");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("cookie-parser");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-handlebars");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = require("mongoose");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("morgan");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("request-ip");
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = require("serve-favicon");
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -677,7 +683,7 @@ var _reactAddonsCssTransitionGroup = __webpack_require__(49);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _Header = __webpack_require__(33);
+var _Header = __webpack_require__(34);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -723,7 +729,7 @@ var Base = function (_React$Component) {
 exports.default = Base;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -807,7 +813,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -837,7 +843,7 @@ var queries = exports.queries = { viewer: function viewer() {
   } };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -855,31 +861,31 @@ var _reactDom = __webpack_require__(50);
 
 var _reactRouter = __webpack_require__(8);
 
-var _App = __webpack_require__(37);
+var _App = __webpack_require__(38);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Home = __webpack_require__(38);
+var _Home = __webpack_require__(39);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _SongsList = __webpack_require__(40);
+var _SongsList = __webpack_require__(41);
 
 var _SongsList2 = _interopRequireDefault(_SongsList);
 
-var _Song = __webpack_require__(39);
+var _Song = __webpack_require__(40);
 
 var _Song2 = _interopRequireDefault(_Song);
 
-var _About = __webpack_require__(36);
+var _About = __webpack_require__(37);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Base = __webpack_require__(32);
+var _Base = __webpack_require__(33);
 
 var _Base2 = _interopRequireDefault(_Base);
 
-var _Songs = __webpack_require__(34);
+var _Songs = __webpack_require__(35);
 
 var _reactRelay = __webpack_require__(6);
 
@@ -915,7 +921,7 @@ module.exports = _jsx(_reactRouter.Router, {
 }))));
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -963,7 +969,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1002,7 +1008,7 @@ exports.default = _react2.default.createClass({
 });
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1112,7 +1118,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1176,7 +1182,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1208,6 +1214,10 @@ var _SearchBar = __webpack_require__(13);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
+var _classnames = __webpack_require__(16);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1224,9 +1234,22 @@ var SongsList = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).call(this, props));
 
-        _this.state = {
-            borderColorClass: 'ce'
+        _this._renderSongs = function () {
+            return _this.props.viewer.songs.edges.map(function (_ref) {
+                var node = _ref.node;
+
+                return _jsx(_reactBootstrap.ListGroupItem, {
+                    className: _lodash2.default.split(_this.props.location.pathname, '/')[1]
+                }, void 0, node.num + '. ' + node.title);
+            });
         };
+
+        _this.state = {
+            borderColorClass: 'ce',
+            activeLanguage: 'fr'
+        };
+        _this._fetchLanguage = _this._fetchLanguage.bind(_this);
+
         return _this;
     }
 
@@ -1234,36 +1257,59 @@ var SongsList = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             console.log(_lodash2.default.split(this.props.location.pathname, '/')[1]);
-            this.setState = {
+            this.setState({
                 borderColorClass: _lodash2.default.split(this.props.location.pathname, '/')[1]
-            };
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {}
+    }, {
+        key: '_fetchLanguage',
+        value: function _fetchLanguage(event) {
+            var _this2 = this;
+
+            var lang = event.target.value;
+            if (this.state.activeLanguage !== lang) {
+
+                this.setState({
+                    activeLanguage: lang
+                }, function () {
+                    _this2.props.relay.setVariables({
+                        lang: lang
+                    });
+                });
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var viewer = this.props.viewer;
+            var _this3 = this;
 
             return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 sm: 12,
                 md: 9
-            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, viewer.songs.edges[0].node.book.name)), _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
-                className: 'button-primary'
-            }, void 0, 'French'), _jsx(_reactBootstrap.Button, {
-                className: 'button-primary',
-                active: true
-            }, void 0, 'Kreol')), _jsx(_SearchBar2.default, {
+            }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, this.props.viewer.songs.edges[0].node.book.name)))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+                sm: 12,
+                md: 9
+            }, void 0, _jsx(_reactBootstrap.ButtonToolbar, {}, void 0, _jsx(_reactBootstrap.Button, {
+                className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'fr' ? 'active' : ''),
+                value: 'fr',
+                onClick: function onClick(e) {
+                    return _this3._fetchLanguage(e);
+                }
+            }, void 0, ' French'), _jsx(_reactBootstrap.Button, {
+                className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'ht' ? 'active' : ''),
+                value: 'ht',
+                onClick: function onClick(e) {
+                    return _this3._fetchLanguage(e);
+                }
+            }, void 0, ' Kreol')), _jsx(_SearchBar2.default, {
                 style: { width: '100%', paddingBottom: 20 },
                 placeholder: 'Filter'
             }), _jsx(_reactBootstrap.ListGroup, {
                 className: 'song-list'
-            }, void 0, viewer.songs.edges.map(function (_ref) {
-                var node = _ref.node;
-                return _jsx(_reactBootstrap.ListGroupItem, {
-                    className: _lodash2.default.split(_this2.props.location.pathname, '/')[1]
-                }, void 0, node.num + '. ' + node.title);
-            }))), _jsx(_reactBootstrap.Col, {
+            }, void 0, this._renderSongs())), _jsx(_reactBootstrap.Col, {
                 smHidden: true,
                 md: 3
             }, void 0, _jsx('img', {
@@ -1278,7 +1324,7 @@ var SongsList = function (_React$Component) {
 exports.default = _reactRelay2.default.createContainer(SongsList, {
     initialVariables: { book: "MJ", lang: "fr" },
     prepareVariables: function prepareVariables(prevVariables) {
-        return { book: _lodash2.default.upperCase(prevVariables.book), lang: "fr" };
+        return { book: _lodash2.default.upperCase(prevVariables.book), lang: prevVariables.lang };
     },
     fragments: {
 
@@ -1429,14 +1475,14 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
 }*/
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var graphqlHTTP = __webpack_require__(47);
-var QueryType = __webpack_require__(42);
+var QueryType = __webpack_require__(43);
 
 var _require = __webpack_require__(2),
     GraphQLSchema = _require.GraphQLSchema;
@@ -1453,7 +1499,7 @@ module.exports = function initGraphQL() {
 };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1491,7 +1537,7 @@ var _require3 = __webpack_require__(14),
     nodeField = _require3.nodeField;
 
 var db = __webpack_require__(7);
-var Viewer = __webpack_require__(43);
+var Viewer = __webpack_require__(44);
 /*var Viewer = new GraphQLObjectType({
     name: 'Viewer',
     fields: () => ({
@@ -1524,7 +1570,7 @@ var QueryType = new GraphQLObjectType({
 module.exports = QueryType;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1593,13 +1639,13 @@ var _connectionDefinition = connectionDefinitions({
 module.exports = Viewer;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var async = __webpack_require__(45),
+var async = __webpack_require__(46),
     keystone = __webpack_require__(1);
 
 var Song = keystone.list('Song');
@@ -1636,16 +1682,10 @@ exports.get = function (req, res) {
 };
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-module.exports = require("async");
-
-/***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = require("classnames");
+module.exports = require("async");
 
 /***/ }),
 /* 47 */
@@ -1698,24 +1738,24 @@ module.exports = require("winston-daily-rotate-file");
 
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
-__webpack_require__(24).config();
-var logger = __webpack_require__(17);
+__webpack_require__(25).config();
+var logger = __webpack_require__(18);
 // Require keystone
 var keystone = __webpack_require__(1);
-var handlebars = __webpack_require__(26);
-var compression = __webpack_require__(19);
-var cors = __webpack_require__(23);
+var handlebars = __webpack_require__(27);
+var compression = __webpack_require__(20);
+var cors = __webpack_require__(24);
 var bodyParser = __webpack_require__(10);
-var cookieParser = __webpack_require__(22);
-var session = __webpack_require__(27);
-var MongoStore = __webpack_require__(21)(session);
-var express = __webpack_require__(25);
+var cookieParser = __webpack_require__(23);
+var session = __webpack_require__(28);
+var MongoStore = __webpack_require__(22)(session);
+var express = __webpack_require__(26);
 var path = __webpack_require__(11);
-var favicon = __webpack_require__(31);
-var mongoose = __webpack_require__(28);
-var Promise = __webpack_require__(18);
-var requestIp = __webpack_require__(30);
-var history = __webpack_require__(20);
+var favicon = __webpack_require__(32);
+var mongoose = __webpack_require__(29);
+var Promise = __webpack_require__(19);
+var requestIp = __webpack_require__(31);
+var history = __webpack_require__(21);
 var app = express();
 
 logger.log('info', 'STARTING APP');
@@ -1733,7 +1773,7 @@ app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(requestIp.mw());
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
-app.use(__webpack_require__(29)("combined", { "stream": logger.stream }));
+app.use(__webpack_require__(30)("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
@@ -1756,7 +1796,7 @@ keystone.set('locals', {
 	utils: keystone.utils,
 	editable: keystone.content.editable
 });
-keystone.set('routes', __webpack_require__(16));
+keystone.set('routes', __webpack_require__(17));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
