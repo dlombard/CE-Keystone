@@ -78,4 +78,3 @@ keystone.set('nav', {
 
 
 keystone.start();
-console.log(keystone.mongoose.connection)

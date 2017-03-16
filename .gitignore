@@ -1,6 +1,6 @@
 # Logs
 logs
-*.log
+*.log*
 
 # Runtime data
 pids
@@ -29,3 +29,6 @@ node_modules
 
 # Ignore .DS_Store files on OS X
 .DS_Store
+
+server.bundle.js
+public/bundle.js
