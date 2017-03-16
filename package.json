@@ -31,6 +31,7 @@
     "markdown": "^0.5.0",
     "moment": "2.17.1",
     "mongoose": "^4.8.6",
+    "nconf": "^0.8.4",
     "node-fetch": "^1.6.3",
     "node-sass": "4.5.0",
     "node-sass-middleware": "0.11.0",
@@ -62,12 +63,14 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "npm run build:server && nodemon server.bundle.js",
-    "build:server": "webpack --config webpack.server.config.js"
+    "start": "npm run build && nodemon server.bundle.js",
+    "build:server": "webpack --config webpack.server.config.js",
+    "build:client": "webpack",
+    "build": "npm run build:client && npm run build:server"
   },
   "graphql": {
     "request": {
-      "url": "https://localhost:3000/graphql"
+      "url": "https://localhost:4088/graphql"
     }
   }
 }

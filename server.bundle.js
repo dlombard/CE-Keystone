@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,123 +76,46 @@ module.exports = require("react");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("keystone");
+module.exports = require("react-relay");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql");
+module.exports = require("keystone");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-bootstrap");
+module.exports = require("lodash");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash");
+module.exports = require("graphql");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-relay");
+module.exports = require("react-bootstrap");
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-relay");
+module.exports = require("graphql-relay");
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _ = __webpack_require__(4);
-var logger = __webpack_require__(9);
-
-var buildFind = function buildFind(args, query) {
-    if (args.id) {
-        args._id = args.id;
-        delete args.id;
-    }
-    query.where = args;
-    var data = {};
-    return query.model.find(query.where).sort(query.sort).execAsync().then(function (results) {
-        return results;
-    }).catch(function (err) {
-        console.log(err);
-    });
-};
-
-var queryBuilder = function queryBuilder(op, model, args, opts, doc) {
-    var query = {
-        op: op,
-        model: model,
-        where: {},
-        projection: {},
-        skip: {},
-        limit: {},
-        sort: opts.sort,
-        doc: doc
-    };
-
-    switch (op) {
-        case 'FIND':
-
-            return buildFind(args, query);
-            break;
-        case 'FIND_ONE':
-            model.findById(args).exec(function (err, item) {
-
-                if (err) return err;
-                if (!item) return null;
-
-                return item;
-            });
-            break;
-        default:
-            break;
-    }
-
-    return {};
-};
-
-module.exports = queryBuilder;
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router");
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("winston");
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = require("body-parser");
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 12 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -208,7 +131,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(8);
+var _reactRouter = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -220,135 +143,88 @@ exports.default = _react2.default.createClass({
 });
 
 /***/ }),
-/* 13 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+var _ = __webpack_require__(3);
+var logger = __webpack_require__(11);
 
-var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactBootstrap = __webpack_require__(3);
-
-var _classnames = __webpack_require__(16);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SearchBar = function (_React$Component) {
-    _inherits(SearchBar, _React$Component);
-
-    function SearchBar(props) {
-        _classCallCheck(this, SearchBar);
-
-        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
-
-        _this.state = {
-            placeholder: 'Search'
-        };
-        return _this;
+var buildFind = function buildFind(model, args, opts, doc) {
+    if (args.id) {
+        args._id = args.id;
+        delete args.id;
     }
+    var query = {
+        model: model,
+        where: {},
+        projection: {},
+        skip: {},
+        limit: {},
+        sort: {},
+        doc: doc
+    };
+    if (opts !== null) {
+        if (opts.sort) query.sort = opts.sort;
+    }
+    query.where = args;
+    var data = {};
+    return query.model.find(query.where).sort(query.sort).execAsync().then(function (results) {
+        return results;
+    }).catch(function (err) {
+        logger.log('error', err);
+    });
+};
+var buildFindOne = function buildFindOne(model, args, opts, doc) {
 
-    _createClass(SearchBar, [{
-        key: 'render',
-        value: function render() {
-            var formClass = (0, _classnames2.default)('search-bar', this.props.formClass);
-            return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Form, {
-                className: formClass,
-                style: this.props.style
-            }, void 0, _jsx(_reactBootstrap.FormGroup, {}, void 0, _jsx(_reactBootstrap.FormControl, {
-                type: 'text',
-                placeholder: this.props.placeholder || this.state.placeholder
-            }))));
-        }
-    }]);
+    var query = {
+        model: model,
+        where: {},
+        projection: {},
+        skip: {},
+        limit: {},
+        sort: {},
+        doc: doc
+    };
+    if (opts !== null) {
+        if (opts.sort) query.sort = opts.sort;
+    }
+    query.where = args;
+    var data = {};
+    return query.model.findByIdAsync(args.id).then(function (result) {
+        return result;
+    }).catch(function (err) {
+        logger.log('error', err);
+    });
+};
 
-    return SearchBar;
-}(_react2.default.Component);
+var queryBuilder = function queryBuilder(op, model, args, opts, doc) {
 
-exports.default = SearchBar;
+    switch (op) {
 
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
+        case 'FIND':
+            return buildFind(model, args, opts, doc);
 
-"use strict";
-
-
-var _require = __webpack_require__(2),
-    buildSchema = _require.buildSchema,
-    GraphQLInt = _require.GraphQLInt,
-    GraphQLList = _require.GraphQLList,
-    GraphQLObjectType = _require.GraphQLObjectType,
-    GraphQLSchema = _require.GraphQLSchema,
-    GraphQLString = _require.GraphQLString,
-    GraphQLID = _require.GraphQLID,
-    GraphQLBoolean = _require.GraphQLBoolean,
-    GraphQLNonNull = _require.GraphQLNonNull,
-    Graphql = _require.Graphql;
-
-var _require2 = __webpack_require__(5),
-    connectionArgs = _require2.connectionArgs,
-    connectionDefinitions = _require2.connectionDefinitions,
-    connectionFromArray = _require2.connectionFromArray,
-    cursorForObjectInConnection = _require2.cursorForObjectInConnection,
-    fromGlobalId = _require2.fromGlobalId,
-    globalIdField = _require2.globalIdField,
-    mutationWithClientMutationId = _require2.mutationWithClientMutationId,
-    nodeDefinitions = _require2.nodeDefinitions,
-    toGlobalId = _require2.toGlobalId;
-
-var keystone = __webpack_require__(1);
-var db = __webpack_require__(7);
-
-var _nodeDefinitions = nodeDefinitions(function (globalId) {
-    var _fromGlobalId = fromGlobalId(globalId),
-        type = _fromGlobalId.type,
-        id = _fromGlobalId.id;
-
-    var args = { id: id };
-
-    console.log('TYPE: ' + type);
-    switch (type) {
-        case 'Song':
-            return db('FIND_ONE', keystone.list('Song').model, args, null);
+        case 'FIND_ONE':
+            return buildFindOne(model, args, opts, doc);
         default:
-            return null;
+            break;
     }
-}, function (obj) {
-    console.log('OBJ: ' + obj);
     return {};
-}),
-    nodeInterface = _nodeDefinitions.nodeInterface,
-    nodeField = _nodeDefinitions.nodeField;
+};
 
-module.exports = { nodeInterface: nodeInterface, nodeField: nodeField };
+module.exports = queryBuilder;
 
 /***/ }),
-/* 15 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(2),
+var _require = __webpack_require__(4),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -361,7 +237,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(5),
+var _require2 = __webpack_require__(6),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -372,7 +248,7 @@ var _require2 = __webpack_require__(5),
     nodeDefinitions = _require2.nodeDefinitions,
     toGlobalId = _require2.toGlobalId;
 
-var _require3 = __webpack_require__(14),
+var _require3 = __webpack_require__(15),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
@@ -437,6 +313,178 @@ var SongType = new GraphQLObjectType({
 module.exports = SongType;
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var winston = __webpack_require__(17);
+__webpack_require__(55);
+
+var logger = new winston.Logger({
+    transports: [
+    /*        new winston.transports.Console({
+                level: 'debug',
+                handleExceptions: true,
+                json: false,
+                colorize: true
+            }),*/
+    new winston.transports.DailyRotateFile({
+        filename: 'cesperance-backend.log.',
+        datePattern: 'yyyy-MM-dd',
+        prepend: false,
+        level: 'info'
+    }), new winston.transports.DailyRotateFile({
+        name: 'error-file',
+        filename: 'cesperance-backend-error.log',
+        level: 'error'
+    })],
+    exitOnError: false
+});
+
+module.exports = logger;
+module.exports.stream = {
+    write: function write(message, encoding) {
+        logger.info(message);
+    }
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("body-parser");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(5);
+
+var _classnames = __webpack_require__(16);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchBar = function (_React$Component) {
+    _inherits(SearchBar, _React$Component);
+
+    function SearchBar(props) {
+        _classCallCheck(this, SearchBar);
+
+        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+        _this.state = {
+            placeholder: 'Search'
+
+        };
+        return _this;
+    }
+
+    _createClass(SearchBar, [{
+        key: 'render',
+        value: function render() {
+            var formClass = (0, _classnames2.default)('search-bar', this.props.formClass);
+            return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Form, {
+                className: formClass,
+                style: this.props.style
+            }, void 0, _jsx(_reactBootstrap.FormGroup, {}, void 0, _jsx(_reactBootstrap.FormControl, {
+                type: 'text',
+                placeholder: this.props.placeholder || this.state.placeholder,
+                onChange: this.props.onChange
+            }))));
+        }
+    }]);
+
+    return SearchBar;
+}(_react2.default.Component);
+
+exports.default = SearchBar;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(4),
+    buildSchema = _require.buildSchema,
+    GraphQLInt = _require.GraphQLInt,
+    GraphQLList = _require.GraphQLList,
+    GraphQLObjectType = _require.GraphQLObjectType,
+    GraphQLSchema = _require.GraphQLSchema,
+    GraphQLString = _require.GraphQLString,
+    GraphQLID = _require.GraphQLID,
+    GraphQLBoolean = _require.GraphQLBoolean,
+    GraphQLNonNull = _require.GraphQLNonNull,
+    Graphql = _require.Graphql;
+
+var _require2 = __webpack_require__(6),
+    connectionArgs = _require2.connectionArgs,
+    connectionDefinitions = _require2.connectionDefinitions,
+    connectionFromArray = _require2.connectionFromArray,
+    cursorForObjectInConnection = _require2.cursorForObjectInConnection,
+    fromGlobalId = _require2.fromGlobalId,
+    globalIdField = _require2.globalIdField,
+    mutationWithClientMutationId = _require2.mutationWithClientMutationId,
+    nodeDefinitions = _require2.nodeDefinitions,
+    toGlobalId = _require2.toGlobalId;
+
+var keystone = __webpack_require__(2);
+var db = __webpack_require__(9);
+var SongType = __webpack_require__(10);
+
+var _nodeDefinitions = nodeDefinitions(function (globalId) {
+    var _fromGlobalId = fromGlobalId(globalId),
+        type = _fromGlobalId.type,
+        id = _fromGlobalId.id;
+
+    console.log('TYPE: ' + type);
+    switch (type) {
+        case 'Song':
+            return db('FIND_ONE', keystone.list('Song').model, { id: id }, null);
+        default:
+            return null;
+    }
+}, function (obj) {
+    return 'Song';
+}),
+    nodeInterface = _nodeDefinitions.nodeInterface,
+    nodeField = _nodeDefinitions.nodeField;
+
+module.exports = { nodeInterface: nodeInterface, nodeField: nodeField };
+
+/***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
@@ -444,6 +492,12 @@ module.exports = require("classnames");
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("winston");
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -455,47 +509,47 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(51);
+var _server = __webpack_require__(53);
 
 var _server2 = _interopRequireDefault(_server);
 
-var _reactRouter = __webpack_require__(8);
+var _reactRouter = __webpack_require__(7);
 
-var _routes = __webpack_require__(36);
+var _routes = __webpack_require__(38);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _graphqlHTTP = __webpack_require__(42);
+var _graphqlHTTP = __webpack_require__(44);
 
 var _graphqlHTTP2 = _interopRequireDefault(_graphqlHTTP);
 
-var _bodyParser = __webpack_require__(10);
+var _bodyParser = __webpack_require__(12);
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _reactRelay = __webpack_require__(6);
+var _reactRelay = __webpack_require__(1);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _isomorphicRelayRouter = __webpack_require__(48);
+var _isomorphicRelayRouter = __webpack_require__(50);
 
 var _isomorphicRelayRouter2 = _interopRequireDefault(_isomorphicRelayRouter);
 
-var _path = __webpack_require__(11);
+var _path = __webpack_require__(13);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _winston = __webpack_require__(9);
+var _winston = __webpack_require__(17);
 
 var _winston2 = _interopRequireDefault(_winston);
 
-var _songs = __webpack_require__(45);
+var _songs = __webpack_require__(47);
 
 var _songs2 = _interopRequireDefault(_songs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GRAPHQL_URL = 'http://localhost:3000/graphql';
+var GRAPHQL_URL = 'http://localhost:4088/graphql';
 // api
 
 
@@ -540,40 +594,6 @@ exports = module.exports = function (app) {
             });
         }
     });
-};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var winston = __webpack_require__(9);
-__webpack_require__(53);
-
-var logger = new winston.Logger({
-    transports: [
-    /*        new winston.transports.Console({
-                level: 'debug',
-                handleExceptions: true,
-                json: false,
-                colorize: true
-            }),*/
-    new winston.transports.DailyRotateFile({
-        filename: 'cesperance-backend.log.',
-        datePattern: 'yyyy-MM-dd',
-        prepend: false,
-        level: 'info'
-    })],
-    exitOnError: false
-});
-
-module.exports = logger;
-module.exports.stream = {
-    write: function write(message, encoding) {
-        logger.info(message);
-    }
 };
 
 /***/ }),
@@ -652,16 +672,22 @@ module.exports = require("morgan");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("request-ip");
+module.exports = require("nconf");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("serve-favicon");
+module.exports = require("request-ip");
 
 /***/ }),
 /* 33 */
+/***/ (function(module, exports) {
+
+module.exports = require("serve-favicon");
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -679,11 +705,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = __webpack_require__(49);
+var _reactAddonsCssTransitionGroup = __webpack_require__(51);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _Header = __webpack_require__(34);
+var _Header = __webpack_require__(35);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -729,7 +755,7 @@ var Base = function (_React$Component) {
 exports.default = Base;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -747,7 +773,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(3);
+var _reactBootstrap = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -774,8 +800,8 @@ var App = function (_React$Component) {
                 collapseOnSelect: true,
                 className: 'header'
             }, void 0, _jsx(_reactBootstrap.Navbar.Header, {}, void 0, _jsx(_reactBootstrap.Navbar.Brand, {}, void 0, _jsx('a', {
-                href: '#'
-            }, void 0, 'React-Bootstrap')), _jsx(_reactBootstrap.Navbar.Toggle, {})), _jsx(_reactBootstrap.Navbar.Collapse, {}, void 0, _jsx(_reactBootstrap.Nav, {}, void 0, _jsx(_reactBootstrap.NavItem, {
+                href: '/'
+            }, void 0, 'Chants d\'Esp\xE9rance')), _jsx(_reactBootstrap.Navbar.Toggle, {})), _jsx(_reactBootstrap.Navbar.Collapse, {}, void 0, _jsx(_reactBootstrap.Nav, {}, void 0, _jsx(_reactBootstrap.NavItem, {
                 eventKey: 1,
                 href: '#'
             }, void 0, 'Link'), _jsx(_reactBootstrap.NavItem, {
@@ -813,7 +839,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -824,7 +850,69 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.queries = undefined;
 
-var _reactRelay = __webpack_require__(6);
+var _reactRelay = __webpack_require__(1);
+
+var _reactRelay2 = _interopRequireDefault(_reactRelay);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var queries = exports.queries = { song: function song() {
+    return function () {
+      return {
+        calls: [{
+          kind: 'Call',
+          metadata: {
+            type: 'ID!'
+          },
+          name: 'id',
+          value: {
+            kind: 'CallVariable',
+            callVariableName: 'id'
+          }
+        }],
+        children: [{
+          fieldName: 'id',
+          kind: 'Field',
+          metadata: {
+            isGenerated: true,
+            isRequisite: true
+          },
+          type: 'ID'
+        }, {
+          fieldName: '__typename',
+          kind: 'Field',
+          metadata: {
+            isGenerated: true,
+            isRequisite: true
+          },
+          type: 'String'
+        }],
+        fieldName: 'node',
+        kind: 'Query',
+        metadata: {
+          isAbstract: true,
+          identifyingArgName: 'id',
+          identifyingArgType: 'ID!'
+        },
+        name: 'Song',
+        type: 'Node'
+      };
+    }();
+  } };
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.queries = undefined;
+
+var _reactRelay = __webpack_require__(1);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
@@ -843,7 +931,7 @@ var queries = exports.queries = { viewer: function viewer() {
   } };
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -857,47 +945,49 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(50);
+var _reactDom = __webpack_require__(52);
 
-var _reactRouter = __webpack_require__(8);
+var _reactRouter = __webpack_require__(7);
 
-var _App = __webpack_require__(38);
+var _App = __webpack_require__(40);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Home = __webpack_require__(39);
+var _Home = __webpack_require__(41);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _SongsList = __webpack_require__(41);
+var _SongsList = __webpack_require__(43);
 
 var _SongsList2 = _interopRequireDefault(_SongsList);
 
-var _Song = __webpack_require__(40);
+var _Song = __webpack_require__(42);
 
 var _Song2 = _interopRequireDefault(_Song);
 
-var _About = __webpack_require__(37);
+var _About = __webpack_require__(39);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Base = __webpack_require__(33);
+var _Base = __webpack_require__(34);
 
 var _Base2 = _interopRequireDefault(_Base);
 
-var _Songs = __webpack_require__(35);
+var _Songs = __webpack_require__(37);
 
-var _reactRelay = __webpack_require__(6);
+var _Song3 = __webpack_require__(36);
+
+var _reactRelay = __webpack_require__(1);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _reactRouterRelay = __webpack_require__(52);
+var _reactRouterRelay = __webpack_require__(54);
 
 var _reactRouterRelay2 = _interopRequireDefault(_reactRouterRelay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactRelay2.default.injectNetworkLayer(new _reactRelay2.default.DefaultNetworkLayer('http://localhost:3000/graphql'));
+_reactRelay2.default.injectNetworkLayer(new _reactRelay2.default.DefaultNetworkLayer('http://localhost:4088/graphql'));
 
 module.exports = _jsx(_reactRouter.Router, {
     history: _reactRouter.browserHistory,
@@ -912,16 +1002,17 @@ module.exports = _jsx(_reactRouter.Router, {
     path: '/about',
     component: _About2.default
 }), _jsx(_reactRouter.Route, {
-    path: '/:book',
+    path: '/songs/:book',
     component: _SongsList2.default,
     queries: _Songs.queries
-}, void 0, _jsx(_reactRouter.Route, {
+}, void 0), _jsx(_reactRouter.Route, {
     path: '/songs/:book/:id',
-    component: _Song2.default
-}))));
+    component: _Song2.default,
+    queries: _Song3.queries
+})));
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -969,7 +1060,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -985,7 +1076,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NavLink = __webpack_require__(12);
+var _NavLink = __webpack_require__(8);
 
 var _NavLink2 = _interopRequireDefault(_NavLink);
 
@@ -1008,7 +1099,7 @@ exports.default = _react2.default.createClass({
 });
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1026,13 +1117,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(3);
+var _reactBootstrap = __webpack_require__(5);
 
-var _SearchBar = __webpack_require__(13);
+var _SearchBar = __webpack_require__(14);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-var _NavLink = __webpack_require__(12);
+var _NavLink = __webpack_require__(8);
 
 var _NavLink2 = _interopRequireDefault(_NavLink);
 
@@ -1062,49 +1153,49 @@ var Home = function (_React$Component) {
             }, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/ce'
+                to: '/songs/ce'
             }, void 0, _jsx('img', {
                 src: '/images/ce.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance'))), _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/mj'
+                to: '/songs/mj'
             }, void 0, _jsx('img', {
                 src: '/images/mj.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance')))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/ee'
+                to: '/songs/ee'
             }, void 0, _jsx('img', {
                 src: '/images/ee.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance'))), _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/vr'
+                to: '/songs/vr'
             }, void 0, _jsx('img', {
                 src: '/images/vr.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance')))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/hc'
+                to: '/songs/hc'
             }, void 0, _jsx('img', {
                 src: '/images/hc.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance'))), _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/rn'
+                to: '/songs/rn'
             }, void 0, _jsx('img', {
                 src: '/images/rn.png',
                 style: { maxWidth: 60 }
             }), _jsx('h5', {}, void 0, ' Chant d\'Esperance')))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 xs: 6
             }, void 0, _jsx(_NavLink2.default, {
-                to: '/ga'
+                to: '/songs/ga'
             }, void 0, _jsx('img', {
                 src: '/images/ga.png',
                 style: { maxWidth: 60 }
@@ -1118,7 +1209,7 @@ var Home = function (_React$Component) {
 exports.default = Home;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1136,7 +1227,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(3);
+var _reactRelay = __webpack_require__(1);
+
+var _reactRelay2 = _interopRequireDefault(_reactRelay);
+
+var _lodash = __webpack_require__(3);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _reactBootstrap = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1146,43 +1245,92 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+var Song = function (_React$Component) {
+    _inherits(Song, _React$Component);
 
-    function App() {
-        _classCallCheck(this, App);
+    function Song() {
+        _classCallCheck(this, Song);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Song.__proto__ || Object.getPrototypeOf(Song)).apply(this, arguments));
     }
 
-    _createClass(App, [{
+    _createClass(Song, [{
         key: 'render',
         value: function render() {
             return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+                md: 12,
+                className: 'title'
+            }, void 0, _jsx('h2', {}, void 0, this.props.song.num + '. ' + this.props.song.title))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 md: 12
-            }, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
-                xs: 6
-            }, void 0, _jsx('a', {
-                href: '#'
-            }, void 0, _jsx('img', {
-                src: '/images/ce'
-            }), _jsx('h5', {}, void 0, ' Chant d\'Esperance'))), _jsx(_reactBootstrap.Col, {
-                xs: 6
-            }, void 0, _jsx('a', {
-                href: '#'
-            }, void 0, _jsx('img', {
-                src: '/images/mj'
-            }), _jsx('h5', {}, void 0, ' Chant d\'Esperance')))))));
+            }, void 0, _jsx('span', {
+                dangerouslySetInnerHTML: { __html: this.props.song.lyrics_Markdown.html },
+                className: 'lyrics'
+            }))));
         }
     }]);
 
-    return App;
+    return Song;
 }(_react2.default.Component);
 
-exports.default = App;
+exports.default = _reactRelay2.default.createContainer(Song, {
+    initialVariables: { id: '' },
+    prepareVariables: function prepareVariables(prevVariables) {
+        return { id: prevVariables.id };
+    },
+    fragments: {
+
+        song: function song() {
+            return function () {
+                return {
+                    children: [{
+                        fieldName: 'id',
+                        kind: 'Field',
+                        metadata: {
+                            isRequisite: true
+                        },
+                        type: 'ID'
+                    }, {
+                        fieldName: 'title',
+                        kind: 'Field',
+                        metadata: {},
+                        type: 'String'
+                    }, {
+                        fieldName: 'num',
+                        kind: 'Field',
+                        metadata: {},
+                        type: 'Int'
+                    }, {
+                        children: [{
+                            fieldName: 'md',
+                            kind: 'Field',
+                            metadata: {},
+                            type: 'String'
+                        }, {
+                            fieldName: 'html',
+                            kind: 'Field',
+                            metadata: {},
+                            type: 'String'
+                        }],
+                        fieldName: 'lyrics_Markdown',
+                        kind: 'Field',
+                        metadata: {
+                            canHaveSubselections: true
+                        },
+                        type: 'Markdown'
+                    }],
+                    id: _reactRelay2.default.QL.__id(),
+                    kind: 'Fragment',
+                    metadata: {},
+                    name: 'Song_SongRelayQL',
+                    type: 'Song'
+                };
+            }();
+        }
+    }
+});
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1200,23 +1348,29 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRelay = __webpack_require__(6);
+var _reactRelay = __webpack_require__(1);
 
 var _reactRelay2 = _interopRequireDefault(_reactRelay);
 
-var _lodash = __webpack_require__(4);
+var _lodash = __webpack_require__(3);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _reactBootstrap = __webpack_require__(3);
+var _reactBootstrap = __webpack_require__(5);
 
-var _SearchBar = __webpack_require__(13);
+var _SearchBar = __webpack_require__(14);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
 var _classnames = __webpack_require__(16);
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactRouter = __webpack_require__(7);
+
+var _NavLink = __webpack_require__(8);
+
+var _NavLink2 = _interopRequireDefault(_NavLink);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1235,60 +1389,110 @@ var SongsList = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (SongsList.__proto__ || Object.getPrototypeOf(SongsList)).call(this, props));
 
         _this._renderSongs = function () {
-            return _this.props.viewer.songs.edges.map(function (_ref) {
+            return _this.state.filteredData.map(function (_ref) {
                 var node = _ref.node;
 
                 return _jsx(_reactBootstrap.ListGroupItem, {
-                    className: _lodash2.default.split(_this.props.location.pathname, '/')[1]
-                }, void 0, node.num + '. ' + node.title);
+                    className: _this.props.params.book
+                }, void 0, _jsx(_NavLink2.default, {
+                    to: _this.props.location.pathname + '/' + node.id
+                }, void 0, node.num + '. ' + node.title));
             });
+        };
+
+        _this._fetchLanguage = function (event) {
+
+            var lang = event.target.value;
+            if (_this.state.activeLanguage !== lang) {
+
+                _this.setState({
+                    activeLanguage: lang
+                }, function () {
+                    _this.props.relay.setVariables({
+                        lang: lang
+                    });
+                });
+            }
+        };
+
+        _this._handleSongSelect = function (e) {
+            _this.context.router.push(path);
+        };
+
+        _this._filterSongs = function (e) {
+            var value = e.target.value;
+            var str = _this._removeAccentsByRegex(value);
+            var filtered = _this.state.data.filter(function (song) {
+                console.log();
+                return _this._removeAccentsByRegex(_lodash2.default.lowerCase(song.node.title + ' ' + song.node.num)).indexOf(_lodash2.default.lowerCase(str)) > -1;
+            });
+            console.log(filtered);
+            _this.setState({
+                filteredData: filtered
+            });
+        };
+
+        _this._removeAccentsByRegex = function (s) {
+            var r = _lodash2.default.lowerCase(s);
+            r = r.replace(new RegExp("\\s", 'g'), "");
+            r = r.replace(new RegExp("[àáâãäå]", 'g'), "a");
+            r = r.replace(new RegExp("æ", 'g'), "ae");
+            r = r.replace(new RegExp("ç", 'g'), "c");
+            r = r.replace(new RegExp("[èéêë]", 'g'), "e");
+            r = r.replace(new RegExp("[ìíîï]", 'g'), "i");
+            r = r.replace(new RegExp("ñ", 'g'), "n");
+            r = r.replace(new RegExp("[òóôõö]", 'g'), "o");
+            r = r.replace(new RegExp("œ", 'g'), "oe");
+            r = r.replace(new RegExp("[ùúûü]", 'g'), "u");
+            r = r.replace(new RegExp("[ýÿ]", 'g'), "y");
+            r = r.replace(new RegExp("\\W", 'g'), "");
+            return r;
         };
 
         _this.state = {
             borderColorClass: 'ce',
-            activeLanguage: 'fr'
+            activeLanguage: 'fr',
+            data: [],
+            filteredData: []
         };
         _this._fetchLanguage = _this._fetchLanguage.bind(_this);
-
         return _this;
     }
 
     _createClass(SongsList, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log(_lodash2.default.split(this.props.location.pathname, '/')[1]);
             this.setState({
-                borderColorClass: _lodash2.default.split(this.props.location.pathname, '/')[1]
+                borderColorClass: this.props.params.book
             });
         }
     }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {}
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.setState({
+                data: this.props.viewer.songs.edges,
+                filteredData: this.props.viewer.songs.edges
+            });
+        }
     }, {
-        key: '_fetchLanguage',
-        value: function _fetchLanguage(event) {
-            var _this2 = this;
-
-            var lang = event.target.value;
-            if (this.state.activeLanguage !== lang) {
-
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.props.viewer !== nextProps.viewer) {
                 this.setState({
-                    activeLanguage: lang
-                }, function () {
-                    _this2.props.relay.setVariables({
-                        lang: lang
-                    });
+                    data: nextProps.viewer.songs.edges,
+                    filteredData: nextProps.viewer.songs.edges
                 });
             }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             return _jsx(_reactBootstrap.Grid, {}, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 sm: 12,
-                md: 9
+                md: 9,
+                className: 'title'
             }, void 0, _jsx('h2', {}, void 0, _jsx('span', {}, void 0, this.props.viewer.songs.edges[0].node.book.name)))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
                 sm: 12,
                 md: 9
@@ -1296,17 +1500,20 @@ var SongsList = function (_React$Component) {
                 className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'fr' ? 'active' : ''),
                 value: 'fr',
                 onClick: function onClick(e) {
-                    return _this3._fetchLanguage(e);
+                    return _this2._fetchLanguage(e);
                 }
             }, void 0, ' French'), _jsx(_reactBootstrap.Button, {
                 className: (0, _classnames2.default)("button-primary", this.state.activeLanguage === 'ht' ? 'active' : ''),
                 value: 'ht',
                 onClick: function onClick(e) {
-                    return _this3._fetchLanguage(e);
+                    return _this2._fetchLanguage(e);
                 }
             }, void 0, ' Kreol')), _jsx(_SearchBar2.default, {
                 style: { width: '100%', paddingBottom: 20 },
-                placeholder: 'Filter'
+                placeholder: 'Filter',
+                onChange: function onChange(e) {
+                    return _this2._filterSongs(e);
+                }
             }), _jsx(_reactBootstrap.ListGroup, {
                 className: 'song-list'
             }, void 0, this._renderSongs())), _jsx(_reactBootstrap.Col, {
@@ -1320,6 +1527,10 @@ var SongsList = function (_React$Component) {
 
     return SongsList;
 }(_react2.default.Component);
+
+SongsList.contextTypes = {
+    router: _react2.default.PropTypes.object
+};
 
 exports.default = _reactRelay2.default.createContainer(SongsList, {
     initialVariables: { book: "MJ", lang: "fr" },
@@ -1475,16 +1686,16 @@ exports.default = _reactRelay2.default.createContainer(SongsList, {
 }*/
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var graphqlHTTP = __webpack_require__(47);
-var QueryType = __webpack_require__(43);
+var graphqlHTTP = __webpack_require__(49);
+var QueryType = __webpack_require__(45);
 
-var _require = __webpack_require__(2),
+var _require = __webpack_require__(4),
     GraphQLSchema = _require.GraphQLSchema;
 
 module.exports = function initGraphQL() {
@@ -1499,13 +1710,13 @@ module.exports = function initGraphQL() {
 };
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(2),
+var _require = __webpack_require__(4),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -1518,7 +1729,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(5),
+var _require2 = __webpack_require__(6),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -1529,15 +1740,15 @@ var _require2 = __webpack_require__(5),
     nodeDefinitions = _require2.nodeDefinitions,
     toGlobalId = _require2.toGlobalId;
 
-var keystone = __webpack_require__(1);
-var SongType = __webpack_require__(15);
+var keystone = __webpack_require__(2);
+var SongType = __webpack_require__(10);
 
-var _require3 = __webpack_require__(14),
+var _require3 = __webpack_require__(15),
     nodeInterface = _require3.nodeInterface,
     nodeField = _require3.nodeField;
 
-var db = __webpack_require__(7);
-var Viewer = __webpack_require__(44);
+var db = __webpack_require__(9);
+var Viewer = __webpack_require__(46);
 /*var Viewer = new GraphQLObjectType({
     name: 'Viewer',
     fields: () => ({
@@ -1562,6 +1773,17 @@ var QueryType = new GraphQLObjectType({
                 resolve: function resolve(root, args) {
                     return {};
                 }
+            },
+            song: {
+                type: SongType,
+                args: {
+                    id: { type: new GraphQLNonNull(GraphQLID) }
+                },
+                resolve: function resolve(root, args) {
+                    return db('FIND_ONE', keystone.list('Song').model, { 'id': args.id }, null).then(function (result) {
+                        console.log(result);return result;
+                    });
+                }
             }
         };
     }
@@ -1570,7 +1792,7 @@ var QueryType = new GraphQLObjectType({
 module.exports = QueryType;
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1578,7 +1800,7 @@ module.exports = QueryType;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _require = __webpack_require__(2),
+var _require = __webpack_require__(4),
     buildSchema = _require.buildSchema,
     GraphQLInt = _require.GraphQLInt,
     GraphQLList = _require.GraphQLList,
@@ -1591,7 +1813,7 @@ var _require = __webpack_require__(2),
     GraphQLInputObjectType = _require.GraphQLInputObjectType,
     Graphql = _require.Graphql;
 
-var _require2 = __webpack_require__(5),
+var _require2 = __webpack_require__(6),
     connectionArgs = _require2.connectionArgs,
     connectionDefinitions = _require2.connectionDefinitions,
     connectionFromArray = _require2.connectionFromArray,
@@ -1603,9 +1825,9 @@ var _require2 = __webpack_require__(5),
     nodeDefinitions = _require2.nodeDefinitions,
     toGlobalId = _require2.toGlobalId;
 
-var keystone = __webpack_require__(1);
-var SongType = __webpack_require__(15);
-var db = __webpack_require__(7);
+var keystone = __webpack_require__(2);
+var SongType = __webpack_require__(10);
+var db = __webpack_require__(9);
 
 var Viewer = new GraphQLObjectType({
     name: 'Viewer',
@@ -1633,23 +1855,22 @@ var _connectionDefinition = connectionDefinitions({
     name: 'Song',
     nodeType: SongType
 }),
-    songConnection = _connectionDefinition.connectionType,
-    SongEdge = _connectionDefinition.edgeType;
+    songConnection = _connectionDefinition.connectionType;
 
 module.exports = Viewer;
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var async = __webpack_require__(46),
-    keystone = __webpack_require__(1);
+var async = __webpack_require__(48),
+    keystone = __webpack_require__(2);
 
 var Song = keystone.list('Song');
-var _ = __webpack_require__(4);
+var _ = __webpack_require__(3);
 /**
  * List Songs
  */
@@ -1682,55 +1903,55 @@ exports.get = function (req, res) {
 };
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("async");
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-graphql");
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-relay-router");
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-addons-css-transition-group");
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom");
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-relay");
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("winston-daily-rotate-file");
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1739,26 +1960,29 @@ module.exports = require("winston-daily-rotate-file");
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 __webpack_require__(25).config();
-var logger = __webpack_require__(18);
+var logger = __webpack_require__(11);
 // Require keystone
-var keystone = __webpack_require__(1);
+var keystone = __webpack_require__(2);
 var handlebars = __webpack_require__(27);
 var compression = __webpack_require__(20);
 var cors = __webpack_require__(24);
-var bodyParser = __webpack_require__(10);
+var bodyParser = __webpack_require__(12);
 var cookieParser = __webpack_require__(23);
 var session = __webpack_require__(28);
 var MongoStore = __webpack_require__(22)(session);
 var express = __webpack_require__(26);
-var path = __webpack_require__(11);
-var favicon = __webpack_require__(32);
+var path = __webpack_require__(13);
+var favicon = __webpack_require__(33);
 var mongoose = __webpack_require__(29);
 var Promise = __webpack_require__(19);
-var requestIp = __webpack_require__(31);
+var requestIp = __webpack_require__(32);
 var history = __webpack_require__(21);
+var nconf = __webpack_require__(31);
 var app = express();
 
+nconf.file({ file: './config.json' });
 logger.log('info', 'STARTING APP');
+
 keystone.mongoose = Promise.promisifyAll(mongoose);
 app.get('/js/bundle.js', function (req, res) {
 	res.setHeader('Content-Type', 'application/javascript');
@@ -1777,6 +2001,7 @@ app.use(__webpack_require__(30)("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
+	'compress': true,
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
@@ -1785,18 +2010,22 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'wysiwyg additional buttons': 'preview',
-	'wysiwyg additional plugins': 'preview'
+	'wysiwyg additional plugins': 'preview',
+	'port': nconf.get('port'),
+	'host': nconf.get('host'),
+	'mongoose': Promise.promisifyAll(mongoose),
+	'mongo options': nconf.get('mongoose').options
 });
 
 //keystone.app = app
 keystone.import('./lib/server/models');
 keystone.set('locals', {
-	_: __webpack_require__(4),
+	_: __webpack_require__(3),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable
 });
-keystone.set('routes', __webpack_require__(17));
+keystone.set('routes', __webpack_require__(18));
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
@@ -1805,6 +2034,7 @@ keystone.set('nav', {
 });
 
 keystone.start();
+console.log(keystone.mongoose.connection);
 
 /***/ })
 /******/ ]);

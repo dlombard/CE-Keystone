@@ -69,6 +69,9 @@ p {
 	.list-group-item {
 		text-align: left;
 		font-weight: 600;
+		a{
+			color: $darker-gray;
+		}
 	}
 
 }
@@ -119,5 +122,17 @@ p {
 	border-color: $ga-blue;
 	.form-control {
 		border-color: $ga-blue;
+	}
+}
+.lyrics{
+	p{
+		font-size: 1.4em;
+	}
+	
+}
+.title{
+	h2{
+		font-family: $josefin-slab;
+		font-weight: 600;
 	}
 }

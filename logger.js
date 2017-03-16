@@ -14,7 +14,12 @@ var logger = new winston.Logger({
             datePattern: 'yyyy-MM-dd',
             prepend: false,
             level: 'info'
-        })
+        }),
+         new winston.transports.DailyRotateFile({
+      name: 'error-file',
+      filename: 'cesperance-backend-error.log',
+      level: 'error'
+    }),
     ],
     exitOnError: false
 });

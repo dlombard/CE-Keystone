@@ -37,6 +37,7 @@ type Query {
     id: ID!
   ): Node
   viewer: Viewer
+  song(id: ID!): Song
 }
 
 type References {

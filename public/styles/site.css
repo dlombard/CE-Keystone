@@ -108,6 +108,8 @@ p {
 .song-list .list-group-item {
   text-align: left;
   font-weight: 600; }
+  .song-list .list-group-item a {
+    color: #333; }
 
 .ce {
   border-color: #045ff3; }
@@ -143,3 +145,10 @@ p {
   border-color: #33a3f2; }
   .ga .form-control {
     border-color: #33a3f2; }
+
+.lyrics p {
+  font-size: 1.4em; }
+
+.title h2 {
+  font-family: "Josefin Slab", serif;
+  font-weight: 600; }

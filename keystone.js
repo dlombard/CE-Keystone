@@ -18,13 +18,17 @@ var mongoose = require('mongoose')
 var Promise = require('bluebird')
 var requestIp = require('request-ip')
 var history = require('connect-history-api-fallback');
+var nconf = require('nconf');
 var app = express();
 
+
+nconf.file({ file: './config.json' });
 logger.log('info', 'STARTING APP')
+
 keystone.mongoose = Promise.promisifyAll(mongoose);
 app.get('/js/bundle.js', (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
-    res.sendFile('bundle.js', {root: `${__dirname}/`});
+	res.setHeader('Content-Type', 'application/javascript');
+	res.sendFile('bundle.js', { root: `${__dirname}/` });
 });
 //app.use(express.static('public'));
 app.use(express.static('images'));
@@ -39,6 +43,7 @@ app.use(require('morgan')("combined", { "stream": logger.stream }));
 keystone.init({
 	'name': 'Cesperance-Backend',
 	'brand': 'Cesperance-Backend',
+	'compress': true,
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
@@ -47,7 +52,11 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'wysiwyg additional buttons': 'preview',
-	'wysiwyg additional plugins': 'preview'
+	'wysiwyg additional plugins': 'preview',
+	'port': nconf.get('port'),
+	'host': nconf.get('host'),
+	'mongoose': Promise.promisifyAll(mongoose),
+	'mongo options': nconf.get('mongoose').options
 });
 
 //keystone.app = app
@@ -69,3 +78,4 @@ keystone.set('nav', {
 
 
 keystone.start();
+console.log(keystone.mongoose.connection)
