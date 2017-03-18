@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "algoliasearch": "^3.22.1",
     "async": "2.1.4",
     "babel-relay-plugin": "^0.11.0",
     "bluebird": "^3.5.0",
@@ -39,12 +40,14 @@
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
+    "react-instantsearch": "^3.2.1",
     "react-relay": "^0.10.0",
     "react-router": "^3.0.2",
     "react-router-relay": "^0.13.5",
     "request-ip": "^2.0.1",
     "serve-favicon": "^2.4.1",
     "validator": "^7.0.0",
+    "webpack-dev-server": "^2.4.2",
     "winston": "^2.3.1",
     "winston-daily-rotate-file": "^1.4.6"
   },
@@ -63,7 +66,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "npm run build && nodemon server.bundle.js",
+    "start": "npm run build && node server.bundle.js",
     "build:server": "webpack --config webpack.server.config.js",
     "build:client": "webpack",
     "build": "npm run build:client && npm run build:server"

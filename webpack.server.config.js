@@ -1,10 +1,12 @@
 var fs = require('fs')
 var path = require('path')
+var webpack = require('webpack')
 
 const outputPath = path.resolve(__dirname)
 console.log(`OUTPUT PATH: ${outputPath}`)
 module.exports = {
   entry: path.resolve(__dirname, 'keystone.js'),
+  devtool: 'source-map',
 
   output: { path: outputPath, filename: 'server.bundle.js' },
 
@@ -31,7 +33,10 @@ module.exports = {
     __dirname: false
   },
 
-
+  plugins: [
+    // added this thing!
+    new webpack.HotModuleReplacementPlugin()
+  ],
 }
 
 /*

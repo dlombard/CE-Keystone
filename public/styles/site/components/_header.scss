@@ -7,7 +7,7 @@
  	border-radius: 0;
  	background-color: $ce-blue;
  	border-color: $ce-blue;
- 	height: 40px;
+ 	//height: 40px;
  }
  
  .header .navbar-nav>li>a {
@@ -25,4 +25,18 @@
  input.form-control {
  	width: 100% !important;
  	box-sizing: border-box;
+ }
+ 
+ .navbar-inverse .navbar-toggle {
+ 	border: 0;
+ }
+ 
+ .navbar-inverse .navbar-toggle:hover,
+ .navbar-inverse .navbar-toggle:focus {
+ 	background-color: $bright-blue-shadow;
+ }
+ 
+ .navbar-inverse .navbar-collapse,
+ .navbar-inverse .navbar-form {
+ 	border: 0;
  }

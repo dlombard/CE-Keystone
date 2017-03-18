@@ -6,8 +6,7 @@ nav {
 .header {
   border-radius: 0;
   background-color: #045ff3;
-  border-color: #045ff3;
-  height: 40px; }
+  border-color: #045ff3; }
 
 .header .navbar-nav > li > a {
   color: white; }
@@ -22,10 +21,39 @@ input.form-control {
   width: 100% !important;
   box-sizing: border-box; }
 
+.navbar-inverse .navbar-toggle {
+  border: 0; }
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #1450e0; }
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border: 0; }
+
 .search-bar .form-control {
   border: 1px solid;
   border-color: #045ff3;
   border-radius: 0px; }
+
+.search-results .search-result {
+  padding-bottom: 10px; }
+  .search-results .search-result .search-result-title {
+    font-weight: 600; }
+  .search-results .search-result .search-result-snippet,
+  .search-results .search-result .search-result-title {
+    color: #333; }
+    .search-results .search-result .search-result-snippet strong,
+    .search-results .search-result .search-result-title strong {
+      color: #2158da; }
+  .search-results .search-result h4 {
+    padding-bottom: 1px; }
+  .search-results .search-result .ref {
+    font-weight: 800; }
+
+.search-container {
+  text-align: left; }
 
 #header {
   margin-top: 30px; }
@@ -148,7 +176,3 @@ p {
 
 .lyrics p {
   font-size: 1.4em; }
-
-.title h2 {
-  font-family: "Josefin Slab", serif;
-  font-weight: 600; }

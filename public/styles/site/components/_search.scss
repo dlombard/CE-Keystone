@@ -1,0 +1,25 @@
+.search-results {
+	.search-result {
+		padding-bottom: 10px;
+		.search-result-title {
+			font-weight: 600;
+		}
+		.search-result-snippet,
+		.search-result-title {
+			color: $darker-gray;
+			strong {
+				color: $bright-blue;
+			}
+		}
+		h4 {
+			padding-bottom: 1px;
+		}
+		.ref {
+			font-weight: 800;
+		}
+	}
+}
+
+.search-container {
+	text-align: left;
+}
