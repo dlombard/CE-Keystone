@@ -9,6 +9,11 @@ type Markdown {
   html: String
 }
 
+type Meta {
+  totalViews: Int
+  stats: [Stats]
+}
+
 # An object with an ID
 interface Node {
   # The id of the object.
@@ -61,6 +66,7 @@ type Song implements Node {
   partitions: String
   language: String
   songId: String
+  meta: Meta
 }
 
 # A connection to a list of items.
@@ -81,6 +87,13 @@ type SongEdge {
   cursor: String!
 }
 
+type Stats {
+  week: Int
+  year: Int
+  day: Int
+  views: Int
+}
+
 type Viewer {
-  songs(after: String, first: Int, before: String, last: Int, book: String, language: String): SongConnection
+  songs(after: String, first: Int, before: String, last: Int, book: String, language: String, sortField: String): SongConnection
 }

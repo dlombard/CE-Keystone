@@ -126,8 +126,21 @@ p {
 }
 .lyrics{
 	p{
-		font-size: 1.4em;
+		font-size: 1.3em;
 	}
 	
+}
+
+.ad-banner{
+	padding-bottom: 30px;
+}
+
+.most-viewed{
+	.most-viewed-item{
+		text-align: left;
+	}
+	.most-viewed-title{
+		font-size: 24px;
+	}
 }
 

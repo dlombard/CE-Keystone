@@ -25,7 +25,10 @@ input.form-control {
   border: 0; }
 
 .navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
   background-color: #1450e0; }
 
 .navbar-inverse .navbar-collapse,
@@ -175,4 +178,13 @@ p {
     border-color: #33a3f2; }
 
 .lyrics p {
-  font-size: 1.4em; }
+  font-size: 1.3em; }
+
+.ad-banner {
+  padding-bottom: 30px; }
+
+.most-viewed .most-viewed-item {
+  text-align: left; }
+
+.most-viewed .most-viewed-title {
+  font-size: 24px; }

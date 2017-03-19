@@ -37,7 +37,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(requestIp.mw())
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
 app.use(require('morgan')("combined", { "stream": logger.stream }));
 keystone.init({
