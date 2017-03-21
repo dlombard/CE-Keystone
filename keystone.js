@@ -50,6 +50,8 @@ keystone.init({
 	'view engine': 'pug',
 	'auto update': true,
 	'session': true,
+	'session store': 'mongo',
+	'mongo': process.env.MONGO_URI || 'mongodb://localhost:27017',
 	'auth': true,
 	'user model': 'User',
 	'wysiwyg additional buttons': 'preview',
@@ -57,7 +59,9 @@ keystone.init({
 	'port': nconf.get('port'),
 	'host': nconf.get('host'),
 	'mongoose': Promise.promisifyAll(mongoose),
-	'mongo options': nconf.get('mongoose').options
+	'mongo options': nconf.get('mongoose').options,
+	'ga property': process.env.GA_PROPERTY,
+	'ga domain': process.env.GA_DOMAIN,
 });
 
 //keystone.app = app
