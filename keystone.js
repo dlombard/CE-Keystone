@@ -51,7 +51,7 @@ keystone.init({
 	'auto update': true,
 	'session': true,
 	'session store': 'mongo',
-	'mongo': process.env.MONGO_URI || 'mongodb://localhost:27017',
+	'mongo': process.env.MONGO_URI || 'mongodb://localhost:27017/cesperance-backend',
 	'auth': true,
 	'user model': 'User',
 	'wysiwyg additional buttons': 'preview',
