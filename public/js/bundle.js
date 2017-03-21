@@ -58164,8 +58164,8 @@ exports.default = _reactRelay2.default.createContainer(MostViewedList, {
                             },
                             name: 'first',
                             value: {
-                                kind: 'CallVariable',
-                                callVariableName: 'first'
+                                kind: 'CallValue',
+                                callValue: 40
                             }
                         }, {
                             kind: 'Call',

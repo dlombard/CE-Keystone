@@ -60,8 +60,6 @@ keystone.init({
 	'host': nconf.get('host'),
 	'mongoose': Promise.promisifyAll(mongoose),
 	'mongo options': nconf.get('mongoose').options,
-	'ga property': process.env.GA_PROPERTY,
-	'ga domain': process.env.GA_DOMAIN,
 });
 
 //keystone.app = app
