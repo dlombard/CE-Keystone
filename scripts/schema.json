@@ -197,6 +197,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "minTotalViews",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "sortField",
                   "description": null,
                   "type": {

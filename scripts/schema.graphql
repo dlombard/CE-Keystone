@@ -95,5 +95,5 @@ type Stats {
 }
 
 type Viewer {
-  songs(after: String, first: Int, before: String, last: Int, book: String, language: String, sortField: String): SongConnection
+  songs(after: String, first: Int, before: String, last: Int, book: String, language: String, minTotalViews: Int, sortField: String): SongConnection
 }

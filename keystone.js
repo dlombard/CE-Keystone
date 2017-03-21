@@ -4,6 +4,7 @@ require('dotenv').config();
 var logger = require('./logger');
 // Require keystone
 var keystone = require('keystone');
+var Email = require('keystone-email')
 var handlebars = require('express-handlebars');
 var compression = require('compression');
 var cors = require('cors');
@@ -46,6 +47,7 @@ keystone.init({
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
+	'view engine': 'pug',
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -66,6 +68,8 @@ keystone.set('locals', {
 	utils: keystone.utils,
 	editable: keystone.content.editable,
 });
+
+//keystone.set('email nodemailer', transport)
 keystone.set('routes', require('./lib/server/routes/react'));
 
 keystone.set('nav', {

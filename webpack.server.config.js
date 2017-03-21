@@ -3,7 +3,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 const outputPath = path.resolve(__dirname)
-console.log(`OUTPUT PATH: ${outputPath}`)
+
 module.exports = {
   entry: path.resolve(__dirname, 'keystone.js'),
   devtool: 'source-map',

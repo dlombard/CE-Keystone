@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Raleway");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Raleway:400,700,900");
 nav {
   font-family: "Raleway", serif;
   color: white; }
@@ -76,6 +76,11 @@ input.form-control {
   margin-right: auto;
   margin-left: auto;
   text-align: center; }
+  .content .home-main-content,
+  .content .sidebar-2 {
+    padding-top: 70px;
+    padding-right: 0px;
+    padding-left: 0px; }
 
 body {
   font-family: "Raleway", serif; }
@@ -139,8 +144,9 @@ p {
 .song-list .list-group-item {
   text-align: left;
   font-weight: 600; }
-  .song-list .list-group-item a {
-    color: #333; }
+
+a {
+  color: #333; }
 
 .ce {
   border-color: #045ff3; }
@@ -181,10 +187,98 @@ p {
   font-size: 1.3em; }
 
 .ad-banner {
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  padding-top: 30px; }
 
-.most-viewed .most-viewed-item {
-  text-align: left; }
+.most-viewed {
+  width: 100%; }
+  .most-viewed .most-viewed-item {
+    text-align: left;
+    border-radius: 0;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-color: #333; }
+    .most-viewed .most-viewed-item .stats {
+      color: #333;
+      font-size: 0.9em;
+      font-weight: 700;
+      margin: 0px; }
+    .most-viewed .most-viewed-item .info {
+      margin: 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+  .most-viewed .most-viewed-title {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-align: left;
+    padding: 7px; }
 
-.most-viewed .most-viewed-title {
-  font-size: 24px; }
+@media (max-width: 767px) {
+  .main-header h2 {
+    font-size: 2.5em; } }
+
+@media (min-width: 768px) {
+  .main-header {
+    padding-top: 50px; }
+    .main-header h2 {
+      font-size: 3em; } }
+
+.contact-us {
+  text-align: left;
+  margin-bottom: 15px; }
+  .contact-us .control-label {
+    padding-left: 3px;
+    font-weight: 700; }
+  .contact-us .btn-default.active,
+  .contact-us .btn-default:active,
+  .contact-us .open > .dropdown-toggle.btn-default {
+    background-color: #045ff3;
+    color: white; }
+  .contact-us .btn-default.focus,
+  .contact-us .btn-default:focus {
+    background-color: #045ff3;
+    color: white;
+    border-color: #8c8c8c; }
+
+.alert-info {
+  color: white;
+  background-color: #045ff3;
+  border: 0; }
+
+.contact-alert {
+  display: inline-block;
+  padding: 15px; }
+
+.example-enter {
+  font-size: 12px;
+  transition: font-size 1s ease-out; }
+
+.example-enter.example-enter-active {
+  font-size: 1em; }
+
+.example-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in; }
+
+.example-leave.example-leave-active {
+  opacity: 0.01; }
+
+.example-appear {
+  opacity: 0.01;
+  transition: opacity 0.5s ease-in; }
+
+.example-appear.example-appear-active {
+  opacity: 1; }
+
+.transition-wrapper {
+  position: relative;
+  z-index: 1; }
+  .transition-wrapper .transition-item {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0; }
