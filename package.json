@@ -69,7 +69,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "npm run build && node server.bundle.js",
-    "build:server": "webpack --config webpack.server.config.js",
+    "build:server": "webpack --config webpack.server.config.js --optimize-minimize",
     "build:client": "webpack --optimize-minimize",
     "build": "npm run build:client && npm run build:server",
     "updateSchema": "node scripts/fetch.js"

@@ -6,7 +6,6 @@ const outputPath = path.resolve(__dirname)
 
 module.exports = {
   entry: path.resolve(__dirname, 'keystone.js'),
-  devtool: 'source-map',
 
   output: { path: outputPath, filename: 'server.bundle.js' },
 
