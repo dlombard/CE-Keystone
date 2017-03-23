@@ -54,6 +54,7 @@
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.2.0",
     "babel-loader": "^6.4.0",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
@@ -62,15 +63,15 @@
     "eslint": "3.15.0",
     "eslint-config-keystone": "^3.0.0",
     "eslint-plugin-react": "^5.1.1",
-    "webpack": "^2.2.1",
     "node-sass": "4.5.0",
-    "node-sass-middleware": "0.11.0"
+    "node-sass-middleware": "0.11.0",
+    "webpack": "^2.2.1"
   },
   "scripts": {
     "lint": "eslint .",
     "start": "npm run build && node server.bundle.js",
     "build:server": "webpack --config webpack.server.config.js --optimize-minimize",
-    "build:client": "webpack --optimize-minimize",
+    "build:client": "webpack --optimize-minimize ",
     "build": "npm run build:client && npm run build:server",
     "updateSchema": "node scripts/fetch.js"
   },
