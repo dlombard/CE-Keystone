@@ -210,7 +210,8 @@ a {
   padding-bottom: 30px; }
 
 .lyrics {
-  font-family: "Raleway", serif; }
+  font-family: "Raleway", serif;
+  padding-bottom: 30px; }
   .lyrics strong {
     padding-bottom: 10px; }
   .lyrics p {
