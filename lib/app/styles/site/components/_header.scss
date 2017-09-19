@@ -1,0 +1,98 @@
+ nav {
+ 	font-family: $raleway;
+ 	color: white;
+ }
+
+ .header {
+ 	border-radius: 0;
+ 	background-color: $ce-blue;
+ 	border-color: $ce-blue; //height: 40px;
+ }
+
+ .header .navbar-nav>li>a {
+ 	color: white;
+ }
+
+ .header .navbar-header>a {
+ 	color: white;
+ }
+
+ .header .container {
+ 	width: 100%;
+ }
+
+ input.form-control {
+ 	width: 100% !important;
+ 	box-sizing: border-box;
+ }
+
+ .navbar-inverse .navbar-toggle {
+ 	border: 0;
+ }
+
+ .navbar-inverse .navbar-toggle:hover,
+ .navbar-inverse .navbar-toggle:focus,
+ .navbar-inverse .navbar-nav>.active>a,
+ .navbar-inverse .navbar-nav>.active>a:focus,
+ .navbar-inverse .navbar-nav>.active>a:hover {
+ 	background-color: $bright-blue-shadow;
+ }
+
+ .navbar-inverse .navbar-collapse,
+ .navbar-inverse .navbar-form {
+ 	border: 0;
+ }
+ /*******************************
+             Headers
+*******************************/
+
+ h1,
+ h2,
+ h3,
+ h4,
+ h5 {
+	font-family: $raleway;
+	//padding-bottom: 30px;
+	color: $darker-gray;
+ 	line-height: 1.28571429em;
+ 	margin: calc(2rem - 0.14285714em) 0em 1rem;
+ 	font-weight: bold;
+ 	padding: 0em;
+ }
+
+ h1 {
+ 	min-height: 1rem;
+ 	font-size: 2rem;
+ }
+
+ h2 {
+ 	font-size: 1.71428571rem;
+ }
+
+ h3 {
+ 	font-size: 1.28571429rem;
+ }
+
+ h4 {
+ 	font-size: 1.07142857rem;
+ }
+
+ h5 {
+ 	font-size: 1rem;
+ }
+
+ h1:first-child,
+ h2:first-child,
+ h3:first-child,
+ h4:first-child,
+ h5:first-child {
+ 	margin-top: 0em;
+ }
+
+ h1:last-child,
+ h2:last-child,
+ h3:last-child,
+ h4:last-child,
+ h5:last-child {
+ 	margin-bottom: 0em;
+ }

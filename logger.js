@@ -1,32 +1,20 @@
-var winston = require('winston');
-require('winston-daily-rotate-file');
+const winston = require('winston')
 
-var logger = new winston.Logger({
+const logger = new winston.Logger({
     transports: [
-/*        new winston.transports.Console({
-            level: 'debug',
+        new (winston.transports.Console)({
+            colorize: 'all',
             handleExceptions: true,
             json: false,
-            colorize: true
-        }),*/
-        new winston.transports.DailyRotateFile({
-            filename: 'logs/cesperance-backend.log.',
-            datePattern: 'yyyy-MM-dd',
-            prepend: false,
-            level: 'info'
-        }),
-         new winston.transports.DailyRotateFile({
-      name: 'error-file',
-      filename: 'logs/cesperance-backend-error.log',
-      level: 'error'
-    }),
+            timestamp: true
+        })
     ],
     exitOnError: false
-});
+})
 
-module.exports =  logger;
+module.exports = logger
 module.exports.stream = {
-    write: function(message, encoding){
-        logger.info(message);
+    write: function (message, encoding) {
+        logger.info(message)
     }
-};
+}

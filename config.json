@@ -1,19 +1,4 @@
 {
-  "host": "127.0.0.1",
-  "port": 4088,
-  "mongoose": {
-    "options": {
-      "db": {
-        "native_parser": true
-      },
-      "server": {
-        "poolSize": 5
-      },
-      "replset": {
-        "rs_name": "rs0"
-      }
-    }
-  },
   "brand": "Cesperance",
   "email": "info@cesperance.com"
 }

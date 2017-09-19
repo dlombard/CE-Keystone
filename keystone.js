@@ -1,38 +1,32 @@
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').config();
-var logger = require('./logger');
+const logger = require('./logger');
 // Require keystone
-var keystone = require('keystone');
-var Email = require('keystone-email')
-var handlebars = require('express-handlebars');
-var compression = require('compression');
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var express = require('express')
-var path = require('path')
-var favicon = require('serve-favicon')
-var mongoose = require('mongoose')
-var Promise = require('bluebird')
-var requestIp = require('request-ip')
-var history = require('connect-history-api-fallback');
-var nconf = require('nconf');
-var app = express();
+const keystone = require('keystone');
+const Email = require('keystone-email')
+const handlebars = require('express-handlebars');
+const compression = require('compression');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const express = require('express')
+const path = require('path')
+const favicon = require('serve-favicon')
+const mongoose = require('mongoose')
+const Promise = require('bluebird')
+const requestIp = require('request-ip')
+const history = require('connect-history-api-fallback');
+const app = express();
 
-
-nconf.file({ file: './config.json' });
-logger.log('info', 'STARTING APP')
-
-keystone.mongoose = Promise.promisifyAll(mongoose);
 app.get('/js/bundle.js', (req, res) => {
 	res.setHeader('Content-Type', 'application/javascript');
 	res.sendFile('bundle.js', { root: `${__dirname}/` });
 });
 //app.use(express.static('public'));
-app.use(express.static('images'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,8 +35,8 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use('/styles/', express.static(path.resolve(__dirname, '..', 'css')));
 app.use(require('morgan')("combined", { "stream": logger.stream }));
 keystone.init({
-	'name': 'Cesperance-Backend',
-	'brand': 'Cesperance-Backend',
+	'name': 'Cesperance',
+	'brand': 'Cesperance',
 	'compress': true,
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
@@ -51,15 +45,13 @@ keystone.init({
 	'auto update': true,
 	'session': true,
 	'session store': 'mongo',
-	'mongo': process.env.MONGO_URI || 'mongodb://localhost:27017/cesperance-backend',
 	'auth': true,
 	'user model': 'User',
 	'wysiwyg additional buttons': 'preview',
 	'wysiwyg additional plugins': 'preview',
-	'port': nconf.get('port'),
-	'host': nconf.get('host'),
-	'mongoose': Promise.promisifyAll(mongoose),
-	'mongo options': nconf.get('mongoose').options,
+	'host': process.env.HOST || '127.0.0.1',
+	'port': process.env.PORT,
+	'mongo options': { useMongoClient: true, }
 });
 
 //keystone.app = app
@@ -75,7 +67,6 @@ keystone.set('locals', {
 keystone.set('routes', require('./lib/server/routes/react'));
 
 keystone.set('nav', {
-	posts: ['posts', 'post-categories'],
 	users: 'users',
 	songs: 'songs'
 });

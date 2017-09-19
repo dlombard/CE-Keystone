@@ -14,6 +14,24 @@ type Meta {
   stats: [Stats]
 }
 
+# A connection to a list of items.
+type MetaConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [MetaEdge]
+}
+
+# An edge in a connection.
+type MetaEdge {
+  # The item at the end of the edge
+  node: Song
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 # An object with an ID
 interface Node {
   # The id of the object.
@@ -43,6 +61,7 @@ type Query {
   ): Node
   viewer: Viewer
   song(id: ID!): Song
+  songsMeta(after: String, first: Int, before: String, last: Int, song_id: String, day: Int, week: Int, year: Int, direction: String, _day: Int, _week: Int, _year: Int): MetaConnection
 }
 
 type References {
@@ -76,6 +95,12 @@ type SongConnection {
 
   # A list of edges.
   edges: [SongEdge]
+
+  # A count of the total number of objects in this connection, ignoring pagination.
+  # This allows a client to fetch the first five objects by passing "5" as the
+  # argument to "first", then fetch the total count so it could display "5 of 83",
+  # for example.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -94,6 +119,8 @@ type Stats {
   views: Int
 }
 
-type Viewer {
-  songs(after: String, first: Int, before: String, last: Int, book: String, language: String, minTotalViews: Int, sortField: String): SongConnection
+type Viewer implements Node {
+  # The ID of an object
+  id: ID!
+  songs(after: String, first: Int, before: String, last: Int, book: String, language: String, num: Int, title: String, songId: String, order_by: String): SongConnection
 }

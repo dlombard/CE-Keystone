@@ -1,6 +1,7 @@
 var fs = require('fs')
 var path = require('path')
 var webpack = require('webpack')
+const Dotenv = require('dotenv-webpack');
 
 const outputPath = path.resolve(__dirname)
 
@@ -33,7 +34,9 @@ module.exports = {
   },
 
   plugins: [
-    // added this thing!
+    new Dotenv({
+      path: './.env'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
