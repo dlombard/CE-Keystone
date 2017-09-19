@@ -31,4 +31,4 @@ node_modules
 .DS_Store
 
 server.bundle.js
-public/bundle.js
+bundle.js
