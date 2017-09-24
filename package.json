@@ -81,7 +81,7 @@
     "build:server": "webpack --config webpack.server.config.js --optimize-minimize",
     "build:client": "npm run sass-admin && webpack",
     "build": "npm run build:client && npm run build:server",
-    "sass-admin": "node-sass lib/app/styles/site.scss public/styles/site.css",
+    "sass-admin": "node-sass lib/app/styles/site.scss public/styles/site.css --output-style compressed",
     "updateSchema": "node scripts/fetch.js",
     "relay": "relay-compiler --src ./lib/app --schema scripts/schema.graphql"
   },
