@@ -1,4 +1,5 @@
-var webpack = require('webpack')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -16,11 +17,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: false,
-            debug: true
-        }),
-
+        new UglifyJSPlugin()
     ],
 
     module: {
