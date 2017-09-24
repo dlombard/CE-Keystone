@@ -77,7 +77,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "npm run build && node server.bundle.js",
+    "start": "npm run build:server && node server.bundle.js",
     "build:server": "webpack --config webpack.server.config.js --optimize-minimize",
     "build:client": "npm run sass-admin && webpack",
     "build": "npm run build:client && npm run build:server",
