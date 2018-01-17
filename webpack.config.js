@@ -20,7 +20,7 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: false },
             comments: false,
-            minimize: false
+            minimize: true
           })
     ],
 
