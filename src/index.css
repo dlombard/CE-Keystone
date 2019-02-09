@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800");
+@import url(~antd/dist/antd.css);
+.gradient {
+  background-image: linear-gradient(to bottom, #2343e5, #23CAF3); }
+
+.main-content {
+  font-family: "Montserrat", "Raleway", Verdana, Geneva, Tahoma, sans-serif; }
+  .main-content .sub-1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 100vh;
+    margin: 0 auto; }
+    @media screen and (min-width: 992px) {
+      .main-content .sub-1 {
+        width: 800px; }
+        .main-content .sub-1 h2 {
+          font-size: 3.5em; }
+        .main-content .sub-1 h3 {
+          font-size: 2.0em; } }
+    @media screen and (max-width: 991px) {
+      .main-content .sub-1 {
+        width: 700px; }
+        .main-content .sub-1 h2 {
+          font-size: 3.5em; }
+        .main-content .sub-1 h3 {
+          font-size: 2.0em; } }
+    @media screen and (max-width: 767px) {
+      .main-content .sub-1 {
+        width: 500px; }
+        .main-content .sub-1 h2 {
+          font-size: 2.5em; }
+        .main-content .sub-1 h3 {
+          font-size: 1.0em; } }
+    .main-content .sub-1 .google img {
+      display: inline-block;
+      width: 200px; }
+    .main-content .sub-1 .access-button img {
+      display: inline-block;
+      width: 180px; }
+    .main-content .sub-1 .text-description {
+      text-align: center;
+      padding-top: 40px; }
+    .main-content .sub-1 .description.buttons {
+      text-align: center; }
+    .main-content .sub-1 .sub-content {
+      padding-top: 50px; }

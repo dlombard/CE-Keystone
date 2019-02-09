@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800');
+$default-font: 'Montserrat',
+'Raleway',
+Verdana,
+Geneva,
+Tahoma,
+sans-serif;
+
+@import '~antd/dist/antd.css';
+
+.gradient {
+	background-image:
+		linear-gradient(to bottom,
+		#2343e5, #23CAF3);
+}
+
+.main-content {
+
+	font-family: $default-font;
+
+	.sub-1 {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		height: 100vh;
+		margin: 0 auto;
+
+		@media screen and (min-width: 992px) {
+			width: 800px;
+            h2{
+                font-size: 3.5em;
+            }
+            h3{
+                font-size: 2.0em;
+            }
+        }
+        @media screen and (max-width: 991px) {
+            width: 700px;
+            h2{
+                font-size: 3.5em;
+            }
+            h3{
+                font-size: 2.0em;
+            }
+        }
+        @media screen and (max-width: 767px) {
+            width: 500px;
+            h2{
+                font-size: 2.5em;
+            }
+            h3{
+                font-size: 1.0em;
+            }
+        }
+        .google {
+            img {
+                display: inline-block;
+                width: 200px;
+            }
+
+        }
+        .access-button {
+            img{
+                display: inline-block;
+                width: 180px;
+            }
+
+
+        }
+        .text-description {
+            text-align: center;
+            padding-top: 40px;
+        }
+    
+        .description.buttons {
+            text-align: center;
+    
+
+
+        }
+    
+        .sub-content {
+            padding-top: 50px;
+        }
+	}
+
+
+
+
+	
+}

@@ -1,0 +1,20 @@
+<form action="search" novalidate="novalidate" class="search searchbox sbx-custom">
+  <div role="search" class="sbx-custom__wrapper">
+    <input type="search" ng-model="text"  name="text" placeholder="Search your website" autocomplete="off" required="required" class="sbx-custom__input">
+    <button type="submit" title="Submit your search query." class="sbx-custom__submit">
+      <i class="fa fa-search" aria-hidden="true" style="color:white;"></i>
+    </button>
+    <button type="reset" title="Clear the search query" class="sbx-custom__reset">
+      <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </button>
+  </div>
+</form>
+<!--Js: focus search input after reset-->
+<script type="text/javascript">
+  //<![CDATA[
+           document.querySelector('.searchbox [type="reset"]').addEventListener('click', function() {
+             this.parentNode.querySelector('input').focus();
+           });
+          
+          //]]>
+</script>

@@ -1,0 +1,39 @@
+'use strict';
+
+var cesperanceFactory = angular.module('cesperanceFactory',[]);
+
+cesperanceFactory.factory('myFactory', ['$http', function($http){
+  var songs = [];
+  var _song = {};
+  var getData = function(bookAbbrv, lang) {
+     return $http({method:"GET", url:"//api.cesperance.com/cesperancerest/api/v1.0/chants/book_lang/?book=" + bookAbbrv.toUpperCase() + "&language=" + lang}).then(function(results){
+        songs = results.data;
+         return results;
+     });
+ };
+
+ var getSongs = function(){
+   return songs;
+ };
+
+var setSong = function(song){
+  _song = song;
+}
+ var getSong = function(){
+   return _song;
+ };
+
+ var getSongById = function(id){
+   return $http({method:"GET", url:"//api.cesperance.com/cesperancerest/api/v1.0/chants/id/"+ id}).then(function(results){
+       _song = results.data;
+       return results;
+   });
+ };
+ return { getData: getData,
+          getSongs: getSongs,
+          getSong: getSong,
+          setSong: setSong,
+          getSongById: getSongById
+        };
+
+}])

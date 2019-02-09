@@ -1,0 +1,15 @@
+<div class="container-fluid" id="booksContainer" align="center">
+	<div class="col-md-12" align="center">
+		<div align="center" style="padding-bottom: 20px">
+			<h2 class="booksTitle">{{bookName}}</h2>
+		</div>
+		<ul class="nav nav-pills">
+			<li role="presentation" ng-class="{'active':isSelected(0)}"><a ng-click="changeLanguage('fr', 0)">French</a></li>
+			<li role="presentation" ng-class="{'active':isSelected(1)}"><a ng-click="changeLanguage('ht', 1)" >Creole</a></li>
+		</ul>
+		<input ng-model="search.text" name="mysearch" type="text" class="form-control" style="margin-top: 10px" placeholder="Filter">
+		<div class="list-group songlist"  ng-repeat="song in songs | filter:filterSongs" >
+			<a ng-href="books/{{_bookAbbrv}}/{{song._id}}" ng-click="onSongSelected(song)" class="list-group-item song" ng-style="my_style()">{{song.num + ". "+ song.title}}</a>
+		</div><!--songlist-->
+	</div><!-- /.col-lg-6 -->
+</div>

@@ -1,0 +1,24 @@
+<div class="ceContainer">
+    <div class="row"  align="center">
+		<div class="col-xs-12">
+			<h2 class="booksTitle">Chant d'Espérance</h2>
+		</div>
+	</div>
+    <div class="row" align="center" style="margin-bottom: 30px;">
+        <ng-include src="'partials/search_box.html'"></ng-include>
+    </div>
+    <div class="row">
+        <div class="hit" ng-repeat="hit in algolia.hits">
+            <h3 class="r">
+            <a ng-href="books/{{hit.book.abbrv}}/{{hit._id.$oid}}" ng-click="onHitSelected(hit)">
+                    <p class="link"><span> {{hit.num}} {{hit.book.name}} {{hit.language}}</span></p>
+            </a>
+            </h3>
+            <span ng-bind-html="hit._snippetResult.title.value" class="title"></span><br>
+                    <span>...</span>
+                    <span ng-bind-html="hit._snippetResult.lyrics.value"></span>
+                    <span>...</span><br>
+            <br>
+        </div>
+    </div>
+</div>

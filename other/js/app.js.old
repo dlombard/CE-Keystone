@@ -1,0 +1,39 @@
+'use strict';
+
+/* App Module */
+
+var app = angular.module('cesperance-angular', ['ngSanitize', 'ngRoute', 'cesperanceFactory'],function($locationProvider) {
+  $locationProvider.html5Mode(true);
+});
+app.config(['$compileProvider', function ($compileProvider) {
+$compileProvider.debugInfoEnabled(false);
+}]);
+
+app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/books', {
+        templateUrl: 'partials/books_body.html',
+        controller: 'BookListController'
+      }).
+			when('/books/:bookAbbrv', {
+				templateUrl: 'partials/songslist.html',
+				controller: 'SongsListController'
+			}).
+			when('/books/:bookAbbrv/:id', {
+				templateUrl: 'partials/song.html',
+				controller: 'SongController'
+			}).
+      otherwise({
+        redirectTo: '/books'
+      });
+  }]);
+//
+// when('/books/:bookAbbrv', {
+//   templateUrl: 'partials/songslist.html',
+//   controller: 'SongListController'
+// }).
+// when('/books/:bookAbbrv/:song', {
+//   templateUrl: 'partials/song.html',
+//   controller: 'SongController'
+// })
